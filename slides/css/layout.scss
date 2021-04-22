@@ -16,12 +16,6 @@
 	box-sizing: border-box;
 }
 
-// Text that auto-fits it's container
-.reveal .r-fit-text {
-	display: inline-block; // https://github.com/rikschennink/fitty#performance
-	white-space: nowrap;
-}
-
 // Stack multiple elements on top of each other
 .reveal .r-stack {
 	display: grid;
@@ -36,12 +30,6 @@
 .reveal .r-vstack,
 .reveal .r-hstack {
 	display: flex;
-
-	img, video {
-		min-width: 0;
-		min-height: 0;
-		object-fit: contain;
-	}
 }
 
 .reveal .r-vstack {

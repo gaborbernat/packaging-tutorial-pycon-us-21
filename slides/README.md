@@ -1,14 +1,15 @@
-# Type hinting (and mypy)
+# Lessons from the Trenches: rewriting and re-releasing virtualenv
 
-[Talk for PyCon US 2019](https://www.youtube.com/watch?v=hTrjTAPnA_k/).
+[Talk for EuroPython 2020 - Online](https://ep2020.europython.eu/talks/D2SG8Vb-lessons-from-the-trenches-rewriting-and-re-releasing-virtualenv/).
 
 ## Abstract
 
-Type hinting for Python (as a linter tool) came out in September 2015 as part of Python 3.5 (and was championed by Guido
-himself). Since then, variable annotations (plus, more recently, protocols) improved its capabilities even further. Over
-the last two years, tools, such as mypy, could build on top of it. Slowly, these annotations have emerged from a proof
-of concept state (e.g., mypy API planning) to becoming a stable feature.
-
-In this presentation, I'll tell my story of using type hints for both adding type hinting and checking type correctness
-for a library supporting both Python 2 and 3 and reusing this information to insert type data into the generated Sphinx
-documentation automatically.
+virtualenv is a tool that builds virtual environments for Python. It was first created in September 2007 and lived most
+of its life being a single file project with an increasing amount of (scary) workarounds within. It managed to grow
+until it was 2,700 lines of code. Maintaining this project became increasingly more troublesome, to the point where, we
+had more than 500 open issues at one point. In July 2019, I started working from scratch on a rewrite, with the goal of
+not just increasing the project's maintainability, but also to make it faster and add some new features that were just
+impossible or too hard to do in the existing code base. Fast forward six months to January 2020, when we released the
+first beta, with the first full release coming out on 10th February. It took a bit more than a month to squash all the
+open bugs tickets, but April started without any remaining open bug tickets. This talk will cover the lessons I've
+learned while on this journey.
