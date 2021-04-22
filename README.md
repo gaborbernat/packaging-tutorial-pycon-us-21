@@ -16,3 +16,11 @@ exercises.
 - Tools used for packaging your library.
 - Tools and techniques used to package your application.
 - Testing your package for correctness.
+
+
+# Tutorial outline
+
+- Who am I :-)
+
+## Python Application vs Library
+

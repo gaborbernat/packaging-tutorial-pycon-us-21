@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+
+    <title>🐍 Python Packaging - Demystified 🐍</title>
+
+    <link href="dist/reset.css" rel="stylesheet" />
+    <link href="dist/reveal.css" rel="stylesheet" />
+    <link href="dist/theme/solarized.css" id="theme" rel="stylesheet" />
+    <link href="plugin/highlight/monokai.css" id="highlight-theme" rel="stylesheet" />
+  </head>
+  <style>
+    .reveal pre {
+      margin-top: 0;
+      margin-bottom: 0;
+      box-shadow: none;
+    }
+
+    .reveal code,
+    pre > code {
+      font-family: "Inconsolata Patched", monospace;
+      text-rendering: geometricPrecision;
+      font-variant-ligatures: none;
+      line-height: 1;
+    }
+
+    @font-face {
+      font-family: "Inconsolata Patched";
+      src: local("Inconsolata Patched"),
+        url("dist/theme/fonts/Inconsolata Regular Nerd Font Complete Mono.otf") format("opentype");
+    }
+  </style>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section>
+          <h1>Python Packaging - Demystified</h1>
+          <h5>Tutorial - PyCon US 2021 - Online edition</h5>
+          <p>
+            <small
+              >by <a href="https://github.com/gaborbernat">Bernat Gabor</a> /
+              <a src="https://twitter.com/gjbernat">@gjbernat</a> /
+              <a href="https://github.com/bloomberg">Bloomberg</a>
+            </small>
+            <br />
+            <a href="https://gaborbernat.github.io/pycon-us-2021-tutorial/"
+              >https://gaborbernat.github.io/pycon-us-2021-tutorial</a
+            >
+          </p>
+        </section>
+
+        <section>
+          <h3>Who am I?</h3>
+          <div>
+            <ul>
+              <li class="fragment">software engineer at Bloomberg (data ingestion and quality control)</li>
+              <li class="fragment">OSS contributor <a href="https://github.com/gaborbernat">github/gaborbernat</a></li>
+              <li class="fragment">member of the Python Packaging Authority</li>
+              <li class="fragment">😎 parent to two Yorkshire Terriers (Silky & Junior)</li>
+            </ul>
+            <div class="fragment">
+              <img
+                src="./img/silky_junior.png"
+                style="width: 60%; margin-left: auto; margin-right: auto; margin-bottom: 0"
+              />
+              <p style="font-size: 12px; margin: 0 0">Copyright of the above image owned by Bernat Gabor</p>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h3>Maintainer (author *) of Python OSS projects</h3>
+          <style>
+            #maintain > tbody > tr > td {
+              padding: 2;
+              max-height: 8%;
+            }
+            #maintain > tbody > tr > td > img,
+            #maintain > tbody > tr > td > a > img {
+              margin: 0;
+              height: 1em;
+            }
+          </style>
+          <table id="maintain">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Release</th>
+                <th>Activity</th>
+                <th>Popularity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="https://github.com/pypa/virtualenv">virtualenv *</a></td>
+                <td>
+                  <a href="https://pypi.org/project/virtualenv"
+                    ><img src="https://img.shields.io/pypi/v/virtualenv?style=flat-square" alt="PyPI"
+                  /></a>
+                </td>
+                <td>
+                  <img
+                    src="https://img.shields.io/github/last-commit/pypa/virtualenv?logo=python&amp;style=flat-square"
+                    alt="GitHub last commit"
+                  />
+                </td>
+                <td>
+                  <a href="https://pypistats.org/packages/virtualenv"
+                    ><img src="https://img.shields.io/pypi/dm/virtualenv?style=flat-square" alt="PyPI - Downloads" />
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="https://github.com/tox-dev/tox">tox *</a></td>
+                <td>
+                  <a href="https://pypi.org/project/tox"
+                    ><img src="https://img.shields.io/pypi/v/tox?style=flat-square" alt="PyPI"
+                  /></a>
+                </td>
+                <td>
+                  <img
+                    src="https://img.shields.io/github/last-commit/tox-dev/tox?logo=python&amp;style=flat-square"
+                    alt="GitHub last commit"
+                  />
+                </td>
+                <td>
+                  <a href="https://pypistats.org/packages/tox"
+                    ><img src="https://img.shields.io/pypi/dm/tox?style=flat-square" alt="PyPI - Downloads"
+                  /></a>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="https://github.com/pypa/build">build *</a></td>
+                <td>
+                  <a href="https://pypi.org/project/build"
+                    ><img src="https://img.shields.io/pypi/v/build?style=flat-square" alt="PyPI"
+                  /></a>
+                </td>
+                <td>
+                  <img
+                    src="https://img.shields.io/github/last-commit/pypa/build?logo=python&amp;style=flat-square"
+                    alt="GitHub last commit"
+                  />
+                </td>
+                <td>
+                  <a href="https://pypistats.org/packages/build"
+                    ><img src="https://img.shields.io/pypi/dm/build?style=flat-square" alt="PyPI - Downloads" />
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="https://github.com/pipxproject/pipx">pipx</a></td>
+                <td>
+                  <a href="https://pypi.org/project/pipx"
+                    ><img src="https://img.shields.io/pypi/v/pipx?style=flat-square" alt="PyPI"
+                  /></a>
+                </td>
+                <td>
+                  <img
+                    src="https://img.shields.io/github/last-commit/pipxproject/pipx?logo=python&amp;style=flat-square"
+                    alt="GitHub last commit"
+                  />
+                </td>
+                <td>
+                  <a href="https://pypistats.org/packages/pipx"
+                    ><img src="https://img.shields.io/pypi/dm/pipx?style=flat-square" alt="PyPI - Downloads" />
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="https://github.com/pytest-dev/pytest-print">pytest-print *</a></td>
+                <td>
+                  <a href="https://pypi.org/project/pytest-print"
+                    ><img src="https://img.shields.io/pypi/v/pytest-print?style=flat-square" alt="PyPI"
+                  /></a>
+                </td>
+                <td>
+                  <img
+                    src="https://img.shields.io/github/last-commit/pytest-dev/pytest-print?logo=python&amp;style=flat-square"
+                    alt="GitHub last commit"
+                  />
+                </td>
+                <td>
+                  <a href="https://pypistats.org/packages/pytest-print"
+                    ><img src="https://img.shields.io/pypi/dm/pytest-print?style=flat-square" alt="PyPI - Downloads" />
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="https://github.com/tox-dev/tox-conda">tox-conda</a></td>
+                <td>
+                  <a href="https://pypi.org/project/tox-conda"
+                    ><img src="https://img.shields.io/pypi/v/tox-conda?style=flat-square" alt="PyPI"
+                  /></a>
+                </td>
+                <td>
+                  <img
+                    src="https://img.shields.io/github/last-commit/tox-dev/tox-conda?logo=python&amp;style=flat-square"
+                    alt="GitHub last commit"
+                  />
+                </td>
+                <td>
+                  <a href="https://pypistats.org/packages/tox-conda"
+                    ><img src="https://img.shields.io/pypi/dm/tox-conda?style=flat-square" alt="PyPI - Downloads" />
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="https://github.com/bloomberg/attrs-strict">attrs-strict</a></td>
+                <td>
+                  <a href="https://pypi.org/project/attrs-strict"
+                    ><img src="https://img.shields.io/pypi/v/attrs-strict?style=flat-square" alt="PyPI"
+                  /></a>
+                </td>
+                <td>
+                  <img
+                    src="https://img.shields.io/github/last-commit/bloomberg/attrs-strict?logo=python&amp;style=flat-square"
+                    alt="GitHub last commit"
+                  />
+                </td>
+                <td>
+                  <a href="https://pypistats.org/packages/attrs-strict"
+                    ><img src="https://img.shields.io/pypi/dm/attrs-strict?style=flat-square" alt="PyPI - Downloads" />
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="https://github.com/gaborbernat/sphinx-argparse-cli">sphinx-argparse-cli *</a></td>
+                <td>
+                  <a href="https://pypi.org/project/sphinx-argparse-cli"
+                    ><img src="https://img.shields.io/pypi/v/sphinx-argparse-cli?style=flat-square" alt="PyPI"
+                  /></a>
+                </td>
+                <td>
+                  <img
+                    src="https://img.shields.io/github/last-commit/gaborbernat/sphinx-argparse-cli?logo=python&amp;style=flat-square"
+                    alt="GitHub last commit"
+                  />
+                </td>
+                <td>
+                  <a href="https://pypistats.org/packages/sphinx-argparse-cli"
+                    ><img
+                      src="https://img.shields.io/pypi/dm/sphinx-argparse-cli?style=flat-square"
+                      alt="PyPI - Downloads"
+                    />
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="https://github.com/ambv/retype">retype</a></td>
+                <td>
+                  <a href="https://pypi.org/project/retype"
+                    ><img src="https://img.shields.io/pypi/v/retype?style=flat-square" alt="PyPI"
+                  /></a>
+                </td>
+                <td>
+                  <img
+                    src="https://img.shields.io/github/last-commit/ambv/retype?logo=python&amp;style=flat-square"
+                    alt="GitHub last commit"
+                  />
+                </td>
+                <td>
+                  <a href="https://pypistats.org/packages/retype"
+                    ><img src="https://img.shields.io/pypi/dm/retype?style=flat-square" alt="PyPI - Downloads" />
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="https://github.com/tox-dev/tox-ini-fmt">tox-ini-fmt *</a></td>
+                <td>
+                  <a href="https://pypi.org/project/tox-ini-fmt"
+                    ><img src="https://img.shields.io/pypi/v/tox-ini-fmt?style=flat-square" alt="PyPI"
+                  /></a>
+                </td>
+                <td>
+                  <img
+                    src="https://img.shields.io/github/last-commit/tox-dev/tox-ini-fmt?logo=python&amp;style=flat-square"
+                    alt="GitHub last commit"
+                  />
+                </td>
+                <td>
+                  <a href="https://pypistats.org/packages/tox-ini-fmt"
+                    ><img src="https://img.shields.io/pypi/dm/tox-ini-fmt?style=flat-square" alt="PyPI - Downloads" />
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h1>In Python?</h1>
+          <img style="margin-bottom: 0; border-bottom: 0; width: 60%" src="./img/interested.jpg" />
+          <p style="font-size: 12px; margin: 0 0">
+            <a href="https://commons.wikimedia.org/wiki/File:New_Zealand_Fur_seal.FZ200_(14502532505).jpg"
+              >&copy; Creative Commons CC0 1.0</a
+            >
+          </p>
+        </section>
+
+        <section>
+          <h1>thank you</h1>
+          <div>
+            <img data-src="img/thats_all_folks.webp" style="margin-bottom: 0; border-bottom: 0; width: 50%" />
+            <p style="font-size: 12px; margin: 0 0">
+              <a href="https://commonhttps.wikimedia.org/wiki/File:Common_Seal_Phoca_vitulina.jpg"
+                >&copy; Creative Commons Attribution-Share Alike 2.5 Generic</a
+              >
+            </p>
+          </div>
+          <p>
+            <a href="https://www.bernat.tech/the-state-of-type-hints-in-python/"
+              >https://www.bernat.tech/the-state-of-type-hints-in-python/</a
+            >
+          </p>
+        </section>
+      </div>
+    </div>
+
+    <div style="position: absolute; bottom: 2px; right: 2px; width: 10em">
+      <p
+        style="
+          color: #767676;
+          font-family: Helvetica, sans-serif;
+          font-weight: bold;
+          font-size: 1.75em;
+          margin: 0 2px 2px 0;
+          text-align: center;
+        "
+      >
+        Bloomberg
+      </p>
+      <p style="text-align: center; font-weight: bold; font-size: 0.7em; margin: 0 auto">
+        &copy; 2021 Bloomberg Finance L.P. <br />All rights reserved.
+      </p>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script src="plugin/menu/menu.js"></script>
+    <script src="plugin/zoom/zoom.js"></script>
+    <script>
+      Reveal.initialize({
+        width: 1600,
+        height: 900,
+        margin: 0.02,
+        minScale: 0.2,
+        maxScale: 3.0,
+        hash: true,
+        dependencies: [
+          { src: "plugin/highcharts.js" },
+          { src: "plugin/anything/anything.js" },
+          { src: "plugin/menu/menu.js" },
+        ],
+        history: true,
+        previewLinks: true,
+        navigationMode: "linear",
+        transition: "none",
+        viewDistance: 10,
+        mobileViewDistance: 6,
+        controls: false,
+        controlsTutorial: false,
+        progress: false,
+        plugins: [RevealHighlight, RevealNotes, RevealZoom],
+        anything: [
+          {
+            className: "plot",
+            initialize: function (container, options) {
+              Highcharts.chart(container, options);
+            },
+          },
+        ],
+      });
+    </script>
+  </body>
+</html>
