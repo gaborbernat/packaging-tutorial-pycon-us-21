@@ -2,43 +2,35 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-    <title>🐍 virtualenv rewrite 🐍</title>
+    <title>🐍 Python Packaging - Demystified 🐍</title>
 
-    <link href="dist/reset.css" rel="stylesheet" />
-    <link href="dist/reveal.css" rel="stylesheet" />
-    <link href="dist/theme/solarized.css" id="theme" rel="stylesheet" />
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/black.css" id="theme" />
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme" />
 
-    <link href="plugin/highlight/monokai.css" id="highlight-theme" rel="stylesheet" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="icon" href="img/package.svg" />
+    <link rel="mask-icon" href="img/package.svg" color="#000000" />
   </head>
-  <style>
-    .reveal pre {
-      margin-top: 0;
-      margin-bottom: 0;
-      box-shadow: none;
-    }
-
-    .reveal code,
-    pre > code {
-      font-family: "Inconsolata Patched", monospace;
-      text-rendering: geometricPrecision;
-      font-variant-ligatures: none;
-      line-height: 1;
-    }
-
-    @font-face {
-      font-family: "Inconsolata Patched";
-      src: local("Inconsolata Patched"),
-        url("dist/theme/fonts/Inconsolata Regular Nerd Font Complete Mono.otf") format("opentype");
-    }
-  </style>
   <body>
+    <style>
+      /*set bloomberg logo*/
+      body {
+        background-image: url(img/bloomberg.svg) !important;
+        background-size: 11% !important;
+        background-repeat: no-repeat !important;
+        background-position: 99.5% 99.5% !important;
+      }
+    </style>
     <div class="reveal">
       <div class="slides">
         <section>
-          <h1>Python Packaging - Demystified</h1>
-          <h5>Tutorial - PyCon US 2021 - Online edition</h5>
+          <h1 class="r-fit-text">Python Packaging</h1>
+          <h1 class="r-fit-text">Demystified</h1>
+          <h5>Tutorial - PyCon US 2021 - 🌐 edition</h5>
           <p>
             <small
               >by <a href="https://github.com/gaborbernat">Bernat Gabor</a> /
@@ -57,16 +49,16 @@
           <div>
             <ul>
               <li class="fragment">software engineer at Bloomberg (data ingestion and quality control)</li>
-              <li class="fragment">OSS contributor <a href="https://github.com/gaborbernat">github/gaborbernat</a></li>
+              <li class="fragment">
+                OSS contributor <a href="https://github.com/gaborbernat">gaborbernat@github</a> -
+                <a href="https://bernat.tech">https://bernat.tech</a>
+              </li>
               <li class="fragment">member of the Python Packaging Authority</li>
               <li class="fragment">😎 parent to two Yorkshire Terriers (Silky & Junior)</li>
             </ul>
             <div class="fragment">
-              <img
-                src="./img/silky_junior.png"
-                style="width: 60%; margin-left: auto; margin-right: auto; margin-bottom: 0"
-              />
-              <p style="font-size: 12px; margin: 0 0">Copyright of the above image owned by Bernat Gabor</p>
+              <img src="./img/silky_junior.png" class="r-stretch" />
+              <p style="font-size: 0.1em; margin: 0 0">Copyright of the above image owned by Bernat Gabor</p>
             </div>
           </div>
         </section>
@@ -81,7 +73,7 @@
             #maintain > tbody > tr > td > img,
             #maintain > tbody > tr > td > a > img {
               margin: 0;
-              height: 1em;
+              height: 1.6em;
             }
           </style>
           <table id="maintain">
@@ -297,57 +289,145 @@
         </section>
 
         <section>
-          <h2 style="margin: 0">How best to package your library?</h2>
-
-          <small
-            >by <a href="https://github.com/gaborbernat">Bernat Gabor</a> /
-            <a href="https://twitter.com/gjbernat">@gjbernat</a> / Bloomberg
-          </small>
-          <br />
-
-          <a style="font-size: 0.6em" href="bit.ly/py-package">bit.ly/py-package</a>
-
-          <figure style="font-size: 12px">
-            <img alt="why" style="max-height: 500px" src="./img/why.jpeg" />
-            <figcaption>
-              Photo by
-              <a
-                href="https://unsplash.com/@marcuslcramer?utm_source=ghost&amp;utm_medium=referral&amp;utm_campaign=api-credit"
-                >Marcus Cramer</a
-              >
-              /
-              <a href="https://unsplash.com/?utm_source=ghost&amp;utm_medium=referral&amp;utm_campaign=api-credit"
-                >Unsplash</a
-              >
-              - peoples face when they gaze into Python packaging first time
-            </figcaption>
-          </figure>
+          <h2>Python code is easy to read (and write) 😁</h2>
+          <h2 class="fragment">Shipping and running it to other machines is not 😭</h2>
+          <div class="fragment">
+            <p>peoples face when they gaze into Python packaging first time</p>
+            <figure>
+              <img alt="why" class="r-stretch" src="./img/why.jpeg" />
+              <figcaption>
+                Photo by
+                <a
+                  href="https://unsplash.com/@marcuslcramer?utm_source=ghost&amp;utm_medium=referral&amp;utm_campaign=api-credit"
+                  >Marcus Cramer</a
+                >
+                /
+                <a href="https://unsplash.com/?utm_source=ghost&amp;utm_medium=referral&amp;utm_campaign=api-credit"
+                  >Unsplash</a
+                >
+              </figcaption>
+            </figure>
+          </div>
         </section>
 
         <section>
-          <h5>Who am I?</h5>
-
-          <div>
+          <h2 class="r-fit-text">The state of Python packaging</h2>
+          <h5 style="color: cornflowerblue">From Python Packaging Authority point of view</h5>
+          <div class="fragment">
             <ul>
-              <li><a href="https://github.com/gaborbernat">github/gaborbernat</a></li>
-              <li>Maintainer of the <a href="https://pypi.org/project/virtualenv">virtualenv tool</a></li>
-              <li>PyPa (Python Packaging Authority) member</li>
-              <li>Maintainer of the <a href="https://pypi.org/project/tox">tox</a> tool</li>
-              <li>Software Engineer at Bloomberg</li>
+              <li>Focus on Python only (think pypi.org and pip)</li>
+              <li><b style="color: red">not</b> conda</li>
+              <li><b style="color: red">not</b> your OS packaging system (DPKG/RPM/etc.)</li>
             </ul>
           </div>
         </section>
 
         <section>
-          <h3>The state of Python packaging</h3>
-          <h5>From PyPa point of view</h5>
+          <h1 class="r-fit-text">A demo problem</h1>
           <div class="fragment">
-            <p>so no tools such as</p>
-            <img style="max-height: 100px" src="./img/conda.png" />
-            <br />
-            <img style="max-height: 100px" src="./img/dpkg.png" />
+            <h2>Calculating <span style="color: red">𝜋</span></h2>
+            <p>𝜋 is the ratio of a circle's circumference to its diameter</p>
+            <figure>
+              <img alt="why" class="r-stretch" src="./img/pi.svg" />
+              <figcaption style="font-size: 0.5em">
+                Photo by
+                <a href="https://en.wikipedia.org/wiki/Pi#/media/File:Pi_eq_C_over_d.svg">Kjoonlee on Wikipedia</a>
+                / Public Domain
+              </figcaption>
+            </figure>
           </div>
         </section>
+
+        <section>
+          <h2>Calculating <span style="color: red">𝜋</span></h2>
+          <h3>The Gregory-Leibniz Series</h3>
+          \[\begin{aligned} \frac{\pi}{4} &amp; = 1 - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} - \cdots
+          \end{aligned} \]
+          <div class="fragment">
+            \[\begin{aligned} \pi &amp; = \left(\frac{1}{1} - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} -
+            \cdots \right) \cdot 4 \end{aligned} \]
+          </div>
+          <p class="fragment">Not the fastest way (requires 300 iteration for first two precision)</p>
+        </section>
+
+        <section>
+          <h2>Calculating <span style="color: red">𝜋</span></h2>
+          <h3>The Gregory-Leibniz Series</h3>
+            <div>
+            \[\begin{aligned} \pi &amp; = \left(\frac{1}{1} - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} -
+            \cdots \right) \cdot 4 \end{aligned} \]
+          </div>
+            <pre><code class="lang-python" data-trim data-noescape>
+            # pi_approx.py
+            from math import pi
+
+            def approximate_pi(iteration_count: int) -> float:
+                sign, result = 1, 0.0
+                for at in range(iteration_count):
+                    result += sign / (2 * at + 1)
+                    sign *= -1
+                return result * 4
+
+            if __name__ == "__main__":
+                approx_1, approx_2 = approximate_pi(300), approximate_pi(301)
+                print(f"approx 300 {approx_1} with diff {approx_1 - pi}")
+                print(f"approx 301 {approx_2} with diff {approx_2 - pi}")
+            </code></pre>
+            <pre class="fragment">
+                                    <code class="lang-bash" data-trim data-noescape>
+                      approx 300 3.1382593295155914 with diff -0.0033333240742017267
+                      approx 301 3.1449149035588526 with diff 0.0033222499690594987
+                </code>
+            </pre>
+        </section>
+
+          <section>
+              <h2>How to make it available on another machine?</h2>
+                  There are two ways to use the code:
+                  <div>
+                      <p style="text-align: left">from within Python (the developer way)</p>
+                        <pre><code class="lang-python" data-trim data-noescape>
+                        $ python
+                        Python 3.9.4 (default, Apr 12 2021, 09:53:36)
+                        [Clang 12.0.0 (clang-1200.0.32.29)] on darwin
+                        >>> from pi_approx import approximate_pi
+                        >>> approximate_pi(300)
+                        3.1382593295155914
+                        </code></pre>
+                  </div>
+                  <div class="fragment">
+                      <p style="text-align: left">from the command line (as an executable - the end user way)</p>
+                        <pre><code class="lang-python" data-trim data-noescape>
+                        $  python ./pi_approx.py
+                        approx 300 3.1382593295155914 with diff -0.0033333240742017267
+                        approx 301 3.1449149035588526 with diff 0.0033222499690594987
+                        </code></pre>
+                  </div>
+          </section>
+
+          <section>
+              <h2>How to make it available on another machine?</h2>
+                  There are two ways to use the code we've written:
+                  <div>
+                      <p style="text-align: left">from within Python (the developer way) - <span style="color: red">library</span></p>
+                        <pre><code class="lang-python" data-trim data-noescape>
+                        $ python
+                        Python 3.9.4 (default, Apr 12 2021, 09:53:36)
+                        [Clang 12.0.0 (clang-1200.0.32.29)] on darwin
+                        >>> from pi_approx import approximate_pi
+                        >>> approximate_pi(300)
+                        3.1382593295155914
+                        </code></pre>
+                  </div>
+                  <div>
+                      <p style="text-align: left">from the command line (as an executable - the end user way) - <span style="color: red">application</span></p>
+                        <pre><code class="lang-python" data-trim data-noescape>
+                        $  python ./pi_approx.py
+                        approx 300 3.1382593295155914 with diff -0.0033333240742017267
+                        approx 301 3.1449149035588526 with diff 0.0033222499690594987
+                        </code></pre>
+                  </div>
+          </section>
 
         <section>
           <h5>example project</h5>
@@ -1506,60 +1586,28 @@
       </div>
     </div>
 
-    <div style="position: absolute; bottom: 2px; right: 2px; width: 8em">
-      <p
-        style="
-          color: #767676;
-          font-family: Helvetica, sans-serif;
-          font-weight: bold;
-          font-size: 1.4em;
-          margin: 0 2px 2px 0;
-          text-align: center;
-        "
-      >
-        Bloomberg
-      </p>
-      <p style="text-align: center; font-weight: bold; font-size: 0.1em; margin: 0 auto">
-        &copy; 2020 Bloomberg Finance L.P. <br />All rights reserved.
-      </p>
-    </div>
-
     <script src="dist/reveal.js"></script>
-    <script src="plugin/notes/notes.js"></script>
     <script src="plugin/highlight/highlight.js"></script>
-    <script src="plugin/menu/menu.js"></script>
-    <script src="plugin/zoom/zoom.js"></script>
+    <script src="plugin/math/math.js"></script>
     <script>
       Reveal.initialize({
-        width: 1280,
-        height: 720,
-        margin: 0.02,
+        width: 1920,
+        height: 1080,
+        margin: 0.01,
         minScale: 0.2,
-        maxScale: 3.0,
+        maxScale: 2.0,
         hash: true,
-        dependencies: [
-          { src: "plugin/highcharts.js" },
-          { src: "plugin/anything/anything.js" },
-          { src: "plugin/menu/menu.js" },
-        ],
+          transition: 'none',
         history: true,
-        previewLinks: true,
-        navigationMode: "linear",
-        transition: "none",
-        viewDistance: 10,
-        mobileViewDistance: 6,
+        progress: false,
         controls: false,
         controlsTutorial: false,
-        progress: false,
-        plugins: [RevealHighlight, RevealNotes, RevealZoom],
-        anything: [
-          {
-            className: "plot",
-            initialize: function (container, options) {
-              Highcharts.chart(container, options);
-            },
-          },
-        ],
+        plugins: [RevealHighlight, RevealMath],
+        math: {
+          mathjax: "https://cdn.jsdelivr.net/gh/mathjax/mathjax@2.7.8/MathJax.js",
+          config: "TeX-AMS_HTML-full",
+          TeX: { Macros: { RR: "{\\bf R}" } },
+        },
       });
     </script>
   </body>

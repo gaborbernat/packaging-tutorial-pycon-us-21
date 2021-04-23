@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="65.769005mm"
+   height="20.617344mm"
+   viewBox="0 0 65.769005 20.617344"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0.2 (e86c8708, 2021-01-15)"
+   sodipodi:docname="bloomberg.svg">
+  <defs
+     id="defs2">
+    <rect
+       x="37.041668"
+       y="44.601189"
+       width="130.0238"
+       height="39.309525"
+       id="rect12" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.88"
+     inkscape:cx="123.97425"
+     inkscape:cy="185.75549"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="false"
+     inkscape:snap-global="false"
+     inkscape:window-width="1252"
+     inkscape:window-height="1174"
+     inkscape:window-x="2240"
+     inkscape:window-y="23"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-54.148027,-47.605509)">
+    <text
+       xml:space="preserve"
+       id="text10"
+       style="font-style:normal;font-weight:normal;font-size:10.58329999999999949px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect12);fill:#000000;fill-opacity:1;stroke:none;" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12.7px;line-height:1.25;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="53.371956"
+       y="56.696426"
+       id="text18"><tspan
+         sodipodi:role="line"
+         x="53.371956"
+         y="56.696426"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:12.7px;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#565a5c;fill-opacity:0.337255;stroke-width:0.264583"
+         id="tspan30">Bloomberg</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:4.23332999999999959px;line-height:1.25;font-family:sans-serif;white-space:pre;inline-size:73.2856;fill:#565a5c;fill-opacity:0.33725491;stroke:none;stroke-width:0.264583;"
+       x="101.02273"
+       y="15.935132"
+       id="text38"
+       transform="matrix(0.9776533,0,0,1,-44.939187,46.903409)"><tspan
+         x="101.02273"
+         y="15.935132"><tspan
+           style="font-size:4.23333px;fill:#565a5c;fill-opacity:0.337255;stroke-width:0.264583">© 2021 Bloomberg Finance L.P.</tspan></tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:4.23332999999999959px;line-height:1.25;font-family:sans-serif;fill:#565a5c;fill-opacity:0.33725491;stroke:none;stroke-width:0.264583;"
+       x="67.34848"
+       y="67.348488"
+       id="text44"><tspan
+         sodipodi:role="line"
+         id="tspan42"
+         x="67.34848"
+         y="67.348488"
+         style="font-size:4.23332999999999959px;fill:#565a5c;fill-opacity:0.33725491;stroke-width:0.264583;">All rights reserved.</tspan></text>
+  </g>
+</svg>
