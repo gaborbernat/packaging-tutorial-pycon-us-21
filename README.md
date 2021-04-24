@@ -17,10 +17,52 @@ exercises.
 - Tools and techniques used to package your application.
 - Testing your package for correctness.
 
-
 # Tutorial outline
 
 - Who am I :-)
 
 ## Python Application vs Library
 
+
+A. Introduction
+    1. about me + python packaging is a hard subject, but we'll shed some light on it (pypa only)
+    2. Demo problem - Calculating pi
+    3. How to share code? (we can as library or as an app)
+B. The library case
+    1. Sharing code as a library, means that we can import and use it in a python interpreter/environment
+    2. Understand python interpreter environments -> virtual environments
+    3. Understand python import system
+    4. So sharing a code is making available the code in the purelib/platlib folders, so that the importer can load it
+        1. Developer source tree
+        2. Package builder
+        3. Package uploader
+        4. Package downloader
+        5. Package installer into a python environment
+    5. Package types
+        1. Sdist - build a wheel - developer tree minus project management file
+        2. Wheel - binary -> extract + generate entry points + meta files - files needed at runtime 
+    6. Package builder -> backend + frontend
+        1. Package backend - PEP-517 (flit + setuptools + poetry) -> package dependencies (sdist/wheel)
+            a. flit - pyproject.toml based show off
+            b. setuptools (distutils) - do this as a hands-on code - setup.py + setup.cfg + manifest.in
+            c. poetry - pyproject.toml based
+            d. scons + etc 
+        2. Package frontend (build/pip/poetry) -> create isolated build environment, translate user input to PEP-517 commands
+    7. Why do we need sdist when we have wheels? - speed - c-extension allows using platform specific optimizations,
+       but we don't know all the target platforms ahead (also sometimes used for auditing - enterprise environments)
+       Example cython version of pi approximation (measure the code)
+       Hands-on packaging. 
+    7. Package uploader -> twine/poetry/cp/email
+    8. Package downloader + installer -> pip, though install project available soon; package dependencies can be
+       loaded at install time, latest compatible
+C. The application case
+    1. Sharing code as an application means the target machine is able to run the exposed entry point
+    2. Important to run with the same python + dependencies -> requirements.txt file
+    3. zipapp
+        1. the app only zipped 
+        2. the dependencies also zipped - virtualenv magic 
+    4. shiv/pex
+    5. pyinstaller - make a single executable
+    
+
+      

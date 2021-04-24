@@ -353,11 +353,11 @@
         <section>
           <h2>Calculating <span style="color: red">𝜋</span></h2>
           <h3>The Gregory-Leibniz Series</h3>
-            <div>
+          <div>
             \[\begin{aligned} \pi &amp; = \left(\frac{1}{1} - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} -
             \cdots \right) \cdot 4 \end{aligned} \]
           </div>
-            <pre><code class="lang-python" data-trim data-noescape>
+          <pre><code class="lang-python" data-trim data-noescape>
             # pi_approx.py
             from math import pi
 
@@ -373,7 +373,7 @@
                 print(f"approx 300 {approx_1} with diff {approx_1 - pi}")
                 print(f"approx 301 {approx_2} with diff {approx_2 - pi}")
             </code></pre>
-            <pre class="fragment">
+          <pre class="fragment">
                                     <code class="lang-bash" data-trim data-noescape>
                       approx 300 3.1382593295155914 with diff -0.0033333240742017267
                       approx 301 3.1449149035588526 with diff 0.0033222499690594987
@@ -381,12 +381,12 @@
             </pre>
         </section>
 
-          <section>
-              <h2>How to make it available on another machine?</h2>
-                  There are two ways to use the code:
-                  <div>
-                      <p style="text-align: left">from within Python (the developer way)</p>
-                        <pre><code class="lang-python" data-trim data-noescape>
+        <section>
+          <h2>How to make it available on another machine?</h2>
+          There are two ways to use the code:
+          <div>
+            <p style="text-align: left">from within Python (the developer way)</p>
+            <pre><code class="lang-python" data-trim data-noescape>
                         $ python
                         Python 3.9.4 (default, Apr 12 2021, 09:53:36)
                         [Clang 12.0.0 (clang-1200.0.32.29)] on darwin
@@ -394,23 +394,25 @@
                         >>> approximate_pi(300)
                         3.1382593295155914
                         </code></pre>
-                  </div>
-                  <div class="fragment">
-                      <p style="text-align: left">from the command line (as an executable - the end user way)</p>
-                        <pre><code class="lang-python" data-trim data-noescape>
+          </div>
+          <div class="fragment">
+            <p style="text-align: left">from the command line (as an executable - the end user way)</p>
+            <pre><code class="lang-python" data-trim data-noescape>
                         $  python ./pi_approx.py
                         approx 300 3.1382593295155914 with diff -0.0033333240742017267
                         approx 301 3.1449149035588526 with diff 0.0033222499690594987
                         </code></pre>
-                  </div>
-          </section>
+          </div>
+        </section>
 
-          <section>
-              <h2>How to make it available on another machine?</h2>
-                  There are two ways to use the code we've written:
-                  <div>
-                      <p style="text-align: left">from within Python (the developer way) - <span style="color: red">library</span></p>
-                        <pre><code class="lang-python" data-trim data-noescape>
+        <section>
+          <h2>How to make it available on another machine?</h2>
+          There are two ways to use the code:
+          <div>
+            <p style="text-align: left">
+              from within Python (the developer way) - <span style="color: red">library</span>
+            </p>
+            <pre><code class="lang-python" data-trim data-noescape>
                         $ python
                         Python 3.9.4 (default, Apr 12 2021, 09:53:36)
                         [Clang 12.0.0 (clang-1200.0.32.29)] on darwin
@@ -418,16 +420,168 @@
                         >>> approximate_pi(300)
                         3.1382593295155914
                         </code></pre>
-                  </div>
-                  <div>
-                      <p style="text-align: left">from the command line (as an executable - the end user way) - <span style="color: red">application</span></p>
-                        <pre><code class="lang-python" data-trim data-noescape>
+          </div>
+          <div>
+            <p style="text-align: left">
+              from the command line (as an executable - the end user way) - <span style="color: red">application</span>
+            </p>
+            <pre><code class="lang-python" data-trim data-noescape>
                         $  python ./pi_approx.py
                         approx 300 3.1382593295155914 with diff -0.0033333240742017267
                         approx 301 3.1449149035588526 with diff 0.0033222499690594987
                         </code></pre>
-                  </div>
-          </section>
+          </div>
+        </section>
+
+        <section>
+          <h2>How to make it available on another machine?</h2>
+          There are two ways to use the code:
+          <div>
+            <p style="text-align: left">
+              from within Python (the developer way) - <span style="color: red">library</span> -
+              <span style="color: green">expose the source within a Python interpreter</span>
+            </p>
+            <pre><code class="lang-python" data-trim data-noescape>
+                        $ python
+                        Python 3.9.4 (default, Apr 12 2021, 09:53:36)
+                        [Clang 12.0.0 (clang-1200.0.32.29)] on darwin
+                        >>> from pi_approx import approximate_pi
+                        >>> approximate_pi(300)
+                        3.1382593295155914
+                        </code></pre>
+          </div>
+          <div>
+            <p style="text-align: left">
+              from the command line (as an executable - the end user way) -
+              <span style="color: red">application</span> - <span style="color: green">expose the logic</span>
+            </p>
+            <pre><code class="lang-python" data-trim data-noescape>
+                $  python ./pi_approx.py
+                approx 300 3.1382593295155914 with diff -0.0033333240742017267
+                approx 301 3.1449149035588526 with diff 0.0033222499690594987
+                </code></pre>
+          </div>
+        </section>
+
+        <section>
+          <h2>Application mode</h2>
+          <h4>Allow user to run the code - closed system</h4>
+          <ul>
+            For example a Python GUI, CLI or web application; needs:
+            <li class="fragment">A Python interpreter environment</li>
+            <li class="fragment">Dependencies - exact version - may be obfuscated</li>
+            <li class="fragment">The code - may be obfuscated</li>
+            <li class="fragment">Entry point - how to invoke the execution</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Library mode</h2>
+          <h4>Allow user to interact with the code - open system</h4>
+          <ul class="fragment">
+            Needs:
+            <li>A Python interpreter environment</li>g
+            <li class="fragment">Dependencies - compatible versions</li>
+            <li class="fragment">The code</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>How to package a library</h1>
+        </section>
+
+        <section>
+          <h3>What is a library</h3>
+          <p>code that can be used from within a python interpreter environment</p>
+        </section>
+
+        <section>
+          <h2>Python interpreter environment types</h2>
+          <ul>
+            <li>
+              global or system one (as installed by the operating system package manager)
+              <pre><code class="lang-python" data-trim data-noescape>
+                $ python -c 'import sys; print(sys.executable)'
+                C:\Users\gabor\AppData\Local\Programs\Python\Python39\python.exe
+                </code></pre>
+            </li>
+            <li class="fragment">
+              virtual environment - via <a href="https://docs.python.org/3/library/venv.html">venv</a>
+              <pre><code class="lang-python" data-trim data-noescape>
+                $ py -3.9 -m venv env
+                $ .\env\Scripts\python.exe -c 'import sys; print(sys.executable)'
+                  C:\Users\gabor\git\packaging-tutorial-pycon-us-21\env\Scripts\python.exe
+               </code></pre>
+            </li>
+            <li class="fragment">
+              virtual environment - via <a href="https://virtualenv.pypa.io/en/latest">virtualenv</a>
+              <pre><code class="lang-python" data-trim data-noescape>
+                $ virtualenv env
+                $ .\env\Scripts\python.exe -c 'import sys; print(sys.executable)'
+                  C:\Users\gabor\git\packaging-tutorial-pycon-us-21\env\Scripts\python.exe
+               </code></pre>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>The library discovery system</h2>
+          <ul>
+            How does Python knows if a library is available (<a href="https://docs.python.org/3/reference/import.html"
+              >import-able</a
+            >)?
+            <li class="fragment">
+              It doesn't - "it's easier to ask for forgiveness than permission" - try to import and raise if fails
+              <pre><code class="lang-python" data-trim data-noescape>
+                $ virtualenv env
+                $ .\env\Scripts\python.exe
+                Python 3.9.4 (tags/v3.9.4:1f2e308, Apr  6 2021, 13:40:21) [MSC v.1928 64 bit (AMD64)] on win32
+                Type "help", "copyright", "credits" or "license" for more information.
+                >>> import setuptools
+                >>> setuptools
+                &lt;module 'setuptools' from 'C:\\Users\\gabor\\git\\env\\lib\\site-packages\\setuptools\\__init__.py'&gt;
+               </code></pre>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>The python import system overview</h2>
+          <ol>
+            <li>Python libraries are loaded by importers, these are defined under sys.meta_path</li>
+            <pre><code class="lang-python" data-trim data-noescape>
+              >>> print('\n'.join(str(i) for i in sys.meta_path))
+              &lt;class '_frozen_importlib.BuiltinImporter'&gt;
+              &lt;class '_frozen_importlib.FrozenImporter'&gt;
+              &lt;class '_frozen_importlib_external.PathFinder'&gt;
+             </code></pre>
+            <ul>
+              <li>
+                Built-in importer
+                <pre><code class="lang-python" data-trim data-noescape>
+              >>> import sys
+              >>> sys.__loader__
+              &lt;class '_frozen_importlib.BuiltinImporter'&gt;
+             </code></pre>
+              </li>
+              <li>
+                Frozen importer (on non-Windows)
+                <pre><code class="lang-python" data-trim data-noescape>
+              >>> import _csv
+              >>> _csv
+              &lt;module '_csv' from '/usr/local/lib/python3.9/lib-dynload/_csv.cpython-39-x86_64-linux-gnu.so'&gt;
+              >>> csv.__loader__
+               _csv.__loader__
+              &lt;_frozen_importlib_external.ExtensionFileLoader object at 0x7f013c33e070&gt;
+             </code></pre>
+              </li>
+            </ul>
+          </ol>
+        </section>
+
+        <section>
+          <h1>How to package an application</h1>
+        </section>
 
         <section>
           <h5>example project</h5>
@@ -1585,7 +1739,6 @@
         </section>
       </div>
     </div>
-
     <script src="dist/reveal.js"></script>
     <script src="plugin/highlight/highlight.js"></script>
     <script src="plugin/math/math.js"></script>
@@ -1597,7 +1750,7 @@
         minScale: 0.2,
         maxScale: 2.0,
         hash: true,
-          transition: 'none',
+        transition: "none",
         history: true,
         progress: false,
         controls: false,
