@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -18,11 +18,23 @@
   <body>
     <style>
       /*set bloomberg logo*/
+      @font-face {
+        font-family: "Jetbrains Mono";
+        src: url("./css/JetBrains\ Mono\ Regular\ Nerd\ Font\ Complete\ Mono.ttf");
+      }
+      .reveal code {
+        font-family: "JetBrains Mono";
+        font-size: 0.91em;
+        line-height: 1.2;
+      }
       body {
         background-image: url(img/bloomberg.svg) !important;
         background-size: 11% !important;
         background-repeat: no-repeat !important;
         background-position: 99.5% 99.5% !important;
+      }
+      mark {
+        background-color: mediumseagreen;
       }
     </style>
     <div class="reveal">
@@ -357,7 +369,7 @@
             \[\begin{aligned} \pi &amp; = \left(\frac{1}{1} - \frac{1}{3} + \frac{1}{5} - \frac{1}{7} + \frac{1}{9} -
             \cdots \right) \cdot 4 \end{aligned} \]
           </div>
-          <pre><code class="lang-python" data-trim data-noescape>
+          <pre><code style="max-height: 500px;" class="lang-python" data-trim data-noescape>
             # pi_approx.py
             from math import pi
 
@@ -453,7 +465,7 @@
           <div>
             <p style="text-align: left">
               from the command line (as an executable - the end user way) -
-              <span style="color: red">application</span> - <span style="color: green">expose the logic</span>
+              <span stylef="color: red">application</span> - <span style="color: green">expose the logic</span>
             </p>
             <pre><code class="lang-python" data-trim data-noescape>
                 $  python ./pi_approx.py
@@ -488,37 +500,148 @@
 
         <section>
           <h1>How to package a library</h1>
+          <img src="./img/tennis.jpg" />
         </section>
 
         <section>
           <h3>What is a library</h3>
-          <p>code that can be <b>imported</b> from within a <b>python interpreter environment</b></p>
+          <ul>
+            code that can be
+            <li><span style="color: red">imported</span> and executed</li>
+            <li>from within a <span style="color: red">python interpreter</span></li>
+          </ul>
         </section>
 
         <section>
-          <h2>Python interpreter environment types</h2>
+          <h2>Python interpreter types</h2>
           <ul>
             <li>
               global or system one (as installed by the operating system package manager)
               <pre><code class="lang-python" data-trim data-noescape>
-                $ python -c 'import sys; print(sys.executable)'
+                $ python3.9 -c 'import sys; print(sys.executable)'
                 C:\Users\gabor\AppData\Local\Programs\Python\Python39\python.exe
                 </code></pre>
             </li>
             <li class="fragment">
-              virtual environment - via <a href="https://docs.python.org/3/library/venv.html">venv</a>
+              virtual environments - use system python executable and standard library, but isolate from other libraries
+              <ul>
+                <li class="fragment">
+                  virtual environment - via <a href="https://docs.python.org/3/library/venv.html">venv</a>
+                  <pre><code class="lang-python" data-trim data-noescape>
+                  $ python3.9 -m venv env
+  
+                  $ .\env\Scripts\python.exe -c 'import sys; print(sys.executable)'
+                  C:\Users\gabor\git\env\Scripts\python.exe
+                 </code></pre>
+                </li>
+                <li class="fragment">
+                  virtual environment - via <a href="https://virtualenv.pypa.io/en/latest">virtualenv</a>
+                  <pre><code class="lang-python" data-trim data-noescape>
+                  $ python3.9 -m virtualenv env
+                  created virtual environment CPython3.9.4.final.0-64 in 475ms
+                  creator CPython3Windows(dest=C:\Users\gabor\git\env, clear=True, no_vcs_ignore=False, global=False)
+                  seeder FromAppData(download=False, pip=bundle, setuptools=bundle, wheel=bundle, via=copy, app_data_dir=C:\...\pypa\virtualenv)
+                    added seed packages: pip==21.1, setuptools==56.0.0, wheel==0.36.2
+                  activators BashActivator,BatchActivator,FishActivator,PowerShellActivator,PythonActivator,XonshActivator
+  
+                  $ .\env\Scripts\python.exe -c 'import sys; print(sys.executable)'
+                  C:\Users\gabor\git\env\Scripts\python.exe
+                 </code></pre>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Comparing virtual environment creators</h2>
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th>virtualenv</th>
+                <th>venv</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <span style="font-weight: bold">Installation</span>
+                </td>
+                <td>yes, third-party package</td>
+                <td>no, standard library</td>
+              </tr>
+              <tr>
+                <td>
+                  <span style="font-weight: bold">Update</span>
+                </td>
+                <td>anytime via pip</td>
+                <td>with the interpreter</td>
+              </tr>
+              <tr>
+                <td>
+                  <span style="font-weight: bold">Python version</span>
+                </td>
+                <td>
+                  <span style="font-weight: 400; font-style: normal">2.7 and 3.4 or later</span>
+                </td>
+                <td>3.3 or later</td>
+              </tr>
+              <tr>
+                <td>
+                  <span style="font-weight: bold">Python flavour</span>
+                </td>
+                <td>PyPy, CPython</td>
+                <td>self-support for 3.3+</td>
+              </tr>
+              <tr>
+                <td>Configurability</td>
+                <td>CLI + environment variables + per user config file</td>
+                <td>CLI</td>
+              </tr>
+              <tr>
+                <td>Extensibility</td>
+                <td>via plugins that can be installed alongside</td>
+                <td>by extending the base class</td>
+              </tr>
+              <tr>
+                <td>Performance</td>
+                <td>by using the cached seed mechanism &lt;500ms</td>
+                <td>2 seconds+ per invocation</td>
+              </tr>
+              <tr>
+                <td>API</td>
+                <td>rich: e.g., lookup executable, site package dir</td>
+                <td>
+                  <a href="https://www.python.org/dev/peps/pep-0405/">limited as per PEP-405</a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h2>Performance difference</h2>
+          <ul>
+            measured via
+            <a href="https://github.com/sharkdp/hyperfine">hyperfine</a>
+            on Windows 10 with M2 disk (on UNIX around 2.5 faster)
+            <li>
+              venv
               <pre><code class="lang-python" data-trim data-noescape>
-                $ py -3.9 -m venv env
-                $ .\env\Scripts\python.exe -c 'import sys; print(sys.executable)'
-                  C:\Users\gabor\git\packaging-tutorial-pycon-us-21\env\Scripts\python.exe
+                $ hyperfine 'python3.9 -m venv env --clear'
+                Benchmark #1: python3.9 -m venv env --clear
+                0  Time (mean ± σ):      5.232 s ±  0.173 s    [User: 3.0 ms, System: 9.0 ms]
+                0  Range (min … max):    4.990 s …  5.520 s    10 runs
                </code></pre>
             </li>
-            <li class="fragment">
-              virtual environment - via <a href="https://virtualenv.pypa.io/en/latest">virtualenv</a>
+            <li>
+              virtualenv
               <pre><code class="lang-python" data-trim data-noescape>
-                $ virtualenv env
-                $ .\env\Scripts\python.exe -c 'import sys; print(sys.executable)'
-                  C:\Users\gabor\git\packaging-tutorial-pycon-us-21\env\Scripts\python.exe
+                $ hyperfine 'python3.9 -m virtualenv env --clear'
+                Benchmark #1: python3.9 -m virtualenv env --clear
+                0  Time (mean ± σ):     672.2 ms ±  26.9 ms    [User: 4.4 ms, System: 8.5 ms]
+                1  Range (min … max):   645.4 ms … 740.1 ms    10 runs
                </code></pre>
             </li>
           </ul>
@@ -542,497 +665,1059 @@
                 &lt;module 'setuptools' from 'C:\\Users\\gabor\\git\\env\\lib\\site-packages\\setuptools\\__init__.py'&gt;
                </code></pre>
             </li>
+            <li class="fragment">
+              setuptools here is a module - a dictionary of name to python objects groupped under a given name
+              <pre><code class="lang-python" data-noescape>>>> dir(setuptools)[-3:]
+['string_types', 'version', 'windows_support']
+
+
+
+
+
+
+
+
+               </code></pre>
+            </li>
           </ul>
         </section>
 
         <section>
-          <h2>The python import system overview</h2>
-          <ol>
-            <li>Python libraries are loaded by importers, these are defined under sys.meta_path</li>
-            <pre><code class="lang-python" data-trim data-noescape>
-              >>> print('\n'.join(str(i) for i in sys.meta_path))
-              &lt;class '_frozen_importlib.BuiltinImporter'&gt;
-              &lt;class '_frozen_importlib.FrozenImporter'&gt;
-              &lt;class '_frozen_importlib_external.PathFinder'&gt;
-             </code></pre>
-            <ul>
-              <li>
-                Built-in importer
-                <pre><code class="lang-python" data-trim data-noescape>
-              >>> import sys
-              >>> sys.__loader__
-              &lt;class '_frozen_importlib.BuiltinImporter'&gt;
-             </code></pre>
-              </li>
-              <li>
-                Frozen importer (on non-Windows)
-                <pre><code class="lang-python" data-trim data-noescape>
-              >>> import _csv
-              >>> _csv
-              &lt;module '_csv' from '/usr/local/lib/python3.9/lib-dynload/_csv.cpython-39-x86_64-linux-gnu.so'&gt;
-              >>> csv.__loader__
-               _csv.__loader__
-              &lt;_frozen_importlib_external.ExtensionFileLoader object at 0x7f013c33e070&gt;
-             </code></pre>
-              </li>
-            </ul>
-          </ol>
-        </section>
-
-        <section>
-          <h1>How to package an application</h1>
-        </section>
-
-        <section>
-          <h5>example project</h5>
-          <pre style="max-width: 600px">
-                <code class="lang-python" data-trim data-noescape>
-                pugs-project
-                ├── README.rst
-                ├── setup.cfg
-                ├── setup.py
-                ├── LICENSE.txt
-                ├── src
-                │   └── pugs
-                │       ├── __init__.py
-                │       └── logic.py
-                ├── tests
-                │   ├── test_init.py
-                │   └── test_logic.py
-                ├── tox.ini
-                └── azure-pipelines.yml
-                </code>
-            </pre>
+          <h2>The library discovery system</h2>
           <ul>
-            <li>business logic</li>
-            <li>test code</li>
-            <li>packaging code</li>
-            <li>project management and maintenance: CI/version control</li>
-          </ul>
-        </section>
-
-        <section>
-          <h5>example project</h5>
-          <pre style="max-width: 600px">
-                <code class="lang-python" data-trim data-noescape>
-                pugs-project
-                ├── README.rst
-                ├── setup.cfg
-                ├── setup.py
-                ├── LICENSE.txt
-                <mark>├── src
-                │   └── pugs
-                │       ├── __init__.py
-                │       └── logic.py</mark>
-                ├── tests
-                │   ├── test_init.py
-                │   └── test_logic.py
-                ├── tox.ini
-                └── azure-pipelines.yml
-                </code>
-            </pre>
-          <ul>
-            <li style="background: yellow">business logic</li>
-            <li>test code</li>
-            <li>packaging code</li>
-            <li>project management and maintenance: CI/version control</li>
-          </ul>
-        </section>
-
-        <section>
-          <h5>example project</h5>
-          <pre style="max-width: 600px">
-                <code class="lang-python" data-trim data-noescape>
-                pugs-project
-                ├── README.rst
-                ├── setup.cfg
-                ├── setup.py
-                ├── LICENSE.txt
-                ├── src
-                │   └── pugs
-                │       ├── __init__.py
-                │       └── logic.py
-                <mark>├── tests
-                │   ├── test_init.py
-                │   └── test_logic.py</mark>
-                ├── tox.ini
-                └── azure-pipelines.yml
-                </code>
-            </pre>
-          <ul>
-            <li>business logic</li>
-            <li style="background: yellow">test code</li>
-            <li>packaging code</li>
-            <li>project management and maintenance: CI/version control</li>
-          </ul>
-        </section>
-
-        <section>
-          <h5>example project</h5>
-          <pre style="max-width: 600px">
-                <code class="lang-python" data-trim data-noescape>
-                pugs-project
-                ├── README.rst
-                <mark>├── setup.cfg
-                ├── setup.py</mark>
-                ├── LICENSE.txt
-                ├── src
-                │   └── pugs
-                │       ├── __init__.py
-                │       └── logic.py
-                ├── tests
-                │   ├── test_init.py
-                │   └── test_logic.py
-                ├── tox.ini
-                └── azure-pipelines.yml
-                </code>
-            </pre>
-          <ul>
-            <li>business logic</li>
-            <li>test code</li>
-            <li style="background: yellow">packaging code</li>
-            <li>project management and maintenance: CI/version control</li>
-          </ul>
-        </section>
-
-        <section>
-          <h5>example project</h5>
-          <pre style="max-width: 600px">
-                <code class="lang-python" data-trim data-noescape>
-                pugs-project
-                <mark>├── README.rst</mark>
-                ├── setup.cfg
-                ├── setup.py
-                <mark>├── LICENSE.txt</mark>
-                ├── src
-                │   └── pugs
-                │       ├── __init__.py
-                │       └── logic.py
-                ├── tests
-                │   ├── test_init.py
-                │   └── test_logic.py
-                <mark>├── tox.ini</mark>
-                <mark>└── azure-pipelines.yml</mark>
-                </code>
-            </pre>
-          <ul>
-            <li>business logic</li>
-            <li>test code</li>
-            <li>packaging code</li>
-            <li style="background: yellow">project management and maintenance: CI/version control</li>
-          </ul>
-        </section>
-
-        <section>
-          <h5>What does it do?</h5>
-          <pre style="font-size: 0.35em">
-                <code class="lang-python" data-trim data-noescape>
-                Python 3.7.2 (v3.7.2:9a3ffc0492, Dec 24 2018, 02:44:43)
-                [Clang 6.0 (clang-600.0.57)] on darwin
+            How does Python knows if a library is available (<a href="https://docs.python.org/3/reference/import.html"
+              >import-able</a
+            >)?
+            <li>
+              It doesn't - "it's easier to ask for forgiveness than permission" - try to import and raise if fails
+              <pre><code class="lang-python" data-trim data-noescape>
+                $ virtualenv env
+                $ .\env\Scripts\python.exe
+                Python 3.9.4 (tags/v3.9.4:1f2e308, Apr  6 2021, 13:40:21) [MSC v.1928 64 bit (AMD64)] on win32
                 Type "help", "copyright", "credits" or "license" for more information.
-                >>> import pugs
-                >>> pugs.do_tell()
-                "An enlightened pug knows how to make the best of whatever he has to work with - A Pug's Guide to Dating -  Gemma Correll"
-                </code>
-              </pre>
+                >>> import setuptools
+                >>> setuptools
+                &lt;module 'setuptools' from 'C:\\Users\\gabor\\git\\env\\lib\\site-packages\\setuptools\\__init__.py'&gt;
+               </code></pre>
+            </li>
+            <li>
+              setuptools here is a module - a dictionary of name to python objects groupped under a given name
+              <pre><code class="lang-python" data-noescape>>>> dir(setuptools)[-3:]
+['string_types', 'version', 'windows_support']
 
-          <figure style="font-size: 12px">
-            <img style="max-height: 450px" src="img/photo-1517423568366-8b83523034fd.jpeg" />
-            <figcaption>
-              Photo by
-              <a
-                href="https://unsplash.com/@charlesdeluvio?utm_source=ghost&amp;utm_medium=referral&amp;utm_campaign=api-credit"
-                >Charles 🇵🇭</a
-              >
-              /
-              <a href="https://unsplash.com/?utm_source=ghost&amp;utm_medium=referral&amp;utm_campaign=api-credit"
-                >Unsplash</a
-              >
-              - hmmm
-            </figcaption>
-          </figure>
+>>> setuptools.setup
+&lt;function setup at 0x0000018C1A9660D0&gt;
+
+
+
+
+
+
+</code></pre>
+            </li>
+          </ul>
         </section>
 
         <section>
-          <h5>
-            <a href="https://docs.python.org/3/reference/import.html#the-import-system"
-              >How to make this available on another machine?</a
-            >
-          </h5>
+          <h2>The library discovery system</h2>
+          <ul>
+            How does Python knows if a library is available (<a href="https://docs.python.org/3/reference/import.html"
+              >import-able</a
+            >)?
+            <li>
+              It doesn't - "it's easier to ask for forgiveness than permission" - try to import and raise if fails
+              <pre><code class="lang-python" data-trim data-noescape>
+                $ virtualenv env
+                $ .\env\Scripts\python.exe
+                Python 3.9.4 (tags/v3.9.4:1f2e308, Apr  6 2021, 13:40:21) [MSC v.1928 64 bit (AMD64)] on win32
+                Type "help", "copyright", "credits" or "license" for more information.
+                >>> import setuptools
+                >>> setuptools
+                &lt;module 'setuptools' from 'C:\\Users\\gabor\\git\\env\\lib\\site-packages\\setuptools\\__init__.py'&gt;
+               </code></pre>
+            </li>
+            <li>
+              setuptools here is a module - a dictionary of name to python objects groupped under a given name
+              <pre><code class="lang-python" data-noescape>>>> dir(setuptools)[-3:]
+['string_types', 'version', 'windows_support']
 
-          <pre class="fragment" style="font-size: 0.49em">
+>>> setuptools.setup
+&lt;function setup at 0x0000018C1A9660D0&gt;
+
+>>> setuptools.string_types
+(&lt;class 'str'&gt;,)
+
+
+
+</code></pre>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>The library discovery system</h2>
+          <ul>
+            How does Python knows if a library is available (<a href="https://docs.python.org/3/reference/import.html"
+              >import-able</a
+            >)?
+            <li>
+              It doesn't - "it's easier to ask for forgiveness than permission" - try to import and raise if fails
+              <pre><code class="lang-python" data-trim data-noescape>
+                $ virtualenv env
+                $ .\env\Scripts\python.exe
+                Python 3.9.4 (tags/v3.9.4:1f2e308, Apr  6 2021, 13:40:21) [MSC v.1928 64 bit (AMD64)] on win32
+                Type "help", "copyright", "credits" or "license" for more information.
+                >>> import setuptools
+                >>> setuptools
+                &lt;module 'setuptools' from 'C:\\Users\\gabor\\git\\env\\lib\\site-packages\\setuptools\\__init__.py'&gt;
+               </code></pre>
+            </li>
+            <li>
+              setuptools here is a module - a dictionary of name to python objects groupped under a given name
+              <pre><code class="lang-python" data-noescape>>>> dir(setuptools)[-3:]
+['string_types', 'version', 'windows_support']
+
+>>> setuptools.setup
+&lt;function setup at 0x0000018C1A9660D0&gt;
+
+>>> setuptools.string_types
+(&lt;class 'str'&gt;,)
+
+>>> setuptools.version
+&lt;module 'setuptools.version' from 'C:\\Users\\gabor\\AppData\\...\\Python39\\lib\\site-packages\\setuptools\\version.py'&gt;</code></pre>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>from imports</h1>
+
+          <p>A from import is just syntactic sugar for a module import and then an assigment</p>
+
+          <pre><code class="lang-python" data-noescape data-trim>
+          >>> from setuptools import setup
+          </code></pre>
+
+          <pre><code class="lang-python" data-noescape data-trim>
+            >>> import setuptools
+            >>> setup = setuptools.setup
+            >>> del locals()["setuptools"]
+            </code></pre>
+        </section>
+
+        <section>
+          <h2>not all modules are equal</h2>
+          <pre style="font-size: 0.55em; width: 60em">
+                  <code style="max-height: 30em" class="lang-python" data-noescape data-trim>
+Python 3.9.4 (default, Apr 10 2021, 15:31:19)
+[GCC 8.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+
+<div class="fragment">>>> import sys
+>>> sys
+  &lt;module 'sys' (built-in)&gt;</div>
+<div class="fragment">>>> import os
+>>> os
+  &lt;module 'os' from '/opt/python3.9/lib/python3.9/os.py'&gt;</div>
+<div class="fragment">>>> import _csv
+>>> _csv
+&lt;module '_csv' from '/opt/python3.9/lib/python3.9/lib-dynload/_csv.cpython-39dm-darwin.so'&gt;</div>
+<div class="fragment">>>> import pytoml
+>>> pytoml
+&lt;module 'pytoml' from '/opt/python3.9/lib/python3.9/site-packages/pytoml/__init__.py'&gt;</div>
+<div class="fragment">>>> import pep517
+>>> pep517
+  &lt;module 'pep517' from '/Users/bernat/.local/lib/python3.9/site-packages/pep517/__init__.py'&gt;</div><br></code>
+                  </pre>
+        </section>
+
+        <section>
+          <h2>not all modules are equal</h2>
+          <pre style="font-size: 0.55em; width: 60em">
+                  <code style="max-height: 30em" class="lang-python" data-noescape data-trim>
+Python 3.9.4 (default, Apr 10 2021, 15:31:19)
+[GCC 8.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+
+<mark>>>> import sys
+>>> sys
+  &lt;module 'sys' (built-in)&gt;</mark>
+<span style="color: black; background-color: cyan"><b>builtin module</b></span>
+<div>>>> import os
+>>> os
+  &lt;module 'os' from '/opt/python3.9/lib/python3.9/os.py'&gt;</div>
+<div>>>> import _csv
+>>> _csv
+&lt;module '_csv' from '/opt/python3.9/lib/python3.9/lib-dynload/_csv.cpython-39dm-darwin.so'&gt;</div>
+<div>>>> import pytoml
+>>> pytoml
+&lt;module 'pytoml' from '/opt/python3.9/lib/python3.9/site-packages/pytoml/__init__.py'&gt;</div>
+<div>>>> import pep517
+>>> pep517
+  &lt;module 'pep517' from '/Users/bernat/.local/lib/python3.9/site-packages/pep517/__init__.py'&gt;</div><br></code>
+                  </pre>
+        </section>
+
+        <section>
+          <h2>not all modules are equal</h2>
+          <pre style="font-size: 0.55em; width: 60em">
+                  <code style="max-height: 30em" class="lang-python" data-noescape data-trim>
+Python 3.9.4 (default, Apr 10 2021, 15:31:19)
+[GCC 8.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+
+<div>>>> import sys
+>>> sys
+  &lt;module 'sys' (built-in)&gt;</div>
+<mark>>>> import os
+>>> os
+  &lt;module 'os' from '/opt/python3.9/lib/python3.9/os.py'&gt;</mark>
+<span style="color: black; background-color: cyan"><b>standard library module</b></span>
+<div>>>> import _csv
+>>> _csv
+&lt;module '_csv' from '/opt/python3.9/lib/python3.9/lib-dynload/_csv.cpython-39dm-darwin.so'&gt;</div>
+<div>>>> import pytoml
+>>> pytoml
+&lt;module 'pytoml' from '/opt/python3.9/lib/python3.9/site-packages/pytoml/__init__.py'&gt;</div>
+<div>>>> import pep517
+>>> pep517
+  &lt;module 'pep517' from '/Users/bernat/.local/lib/python3.9/site-packages/pep517/__init__.py'&gt;</div><br></code>
+                  </pre>
+        </section>
+
+        <section>
+          <h2>not all modules are equal</h2>
+          <pre style="font-size: 0.55em; width: 60em">
+                  <code style="max-height: 30em" class="lang-python" data-noescape data-trim>
+Python 3.9.4 (default, Apr 10 2021, 15:31:19)
+[GCC 8.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+
+<div>>>> import sys
+>>> sys
+  &lt;module 'sys' (built-in)&gt;</div>
+<div>>>> import os
+>>> os
+  &lt;module 'os' from '/opt/python3.9/lib/python3.9/os.py'&gt;</div>
+<mark>>>> import _csv
+>>> _csv
+&lt;module '_csv' from '/opt/python3.9/lib/python3.9/lib-dynload/_csv.cpython-39dm-darwin.so'&gt;</mark>
+<span style="color: black; background-color: cyan"><b>standard library dynamic load module</b></span>
+<div>>>> import pytoml
+>>> pytoml
+&lt;module 'pytoml' from '/opt/python3.9/lib/python3.9/site-packages/pytoml/__init__.py'&gt;</div>
+<div>>>> import pep517
+>>> pep517
+  &lt;module 'pep517' from '/Users/bernat/.local/lib/python3.9/site-packages/pep517/__init__.py'&gt;</div><br></code>
+                  </pre>
+        </section>
+
+        <section>
+          <h2>not all modules are equal</h2>
+          <pre style="font-size: 0.55em; width: 60em">
+                  <code style="max-height: 30em" class="lang-python" data-noescape data-trim>
+Python 3.9.4 (default, Apr 10 2021, 15:31:19)
+[GCC 8.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+
+<div>>>> import sys
+>>> sys
+  &lt;module 'sys' (built-in)&gt;</div>
+<div>>>> import os
+>>> os
+  &lt;module 'os' from '/opt/python3.9/lib/python3.9/os.py'&gt;</div>
+<div>>>> import _csv
+>>> _csv
+&lt;module '_csv' from '/opt/python3.9/lib/python3.9/lib-dynload/_csv.cpython-39dm-darwin.so'&gt;</div>
+<mark>>>> import pytoml
+>>> pytoml
+&lt;module 'pytoml' from '/opt/python3.9/lib/python3.9/site-packages/pytoml/__init__.py'&gt;</mark>
+<span style="color: black; background-color: cyan"><b>global site package module -> python -m pip install</b></span>
+<div>>>> import pep517
+>>> pep517
+  &lt;module 'pep517' from '/Users/bernat/.local/lib/python3.9/site-packages/pep517/__init__.py'&gt;</div><br></code>
+                  </pre>
+        </section>
+
+        <section>
+          <h2>not all modules are equal</h2>
+          <pre style="font-size: 0.55em; width: 60em">
+                  <code style="max-height: 30em" class="lang-python" data-noescape data-trim>
+Python 3.9.4 (default, Apr 10 2021, 15:31:19)
+[GCC 8.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+
+<div>>>> import sys
+>>> sys
+  &lt;module 'sys' (built-in)&gt;</div>
+<div>>>> import os
+>>> os
+  &lt;module 'os' from '/opt/python3.9/lib/python3.9/os.py'&gt;</div>
+<div>>>> import _csv
+>>> _csv
+&lt;module '_csv' from '/opt/python3.9/lib/python3.9/lib-dynload/_csv.cpython-39dm-darwin.so'&gt;</div>
+<div>>>> import pytoml
+>>> pytoml
+&lt;module 'pytoml' from '/opt/python3.9/lib/python3.9/site-packages/pytoml/__init__.py'&gt;</div>
+<mark>>>> import pep517
+>>> pep517
+  &lt;module 'pep517' from '/Users/bernat/.local/lib/python3.9/site-packages/pep517/__init__.py'&gt;</mark>
+<span style="color: black; background-color: cyan"><b>user site package module -> python -m pip install --user</b></span></code>
+                  </pre>
+        </section>
+
+        <section>
+          <h2>the import system - importers</h2>
+          <pre style="font-size: 0.55em; width: 60em">
+                  <code style="max-height: 30em" class="lang-python" data-noescape data-trim>
+>>> import sys
+</code>
+                  </pre>
+
+          <pre style="font-size: 0.55em; width: 60em">
+                  <code style="max-height: 30em" class="lang-python" data-noescape data-trim>
+Python 3.9.4 (default, Apr 10 2021, 15:31:19)
+[GCC 8.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+                    
+>>> import sys
+>>> for importer in sys.meta_path:
+...     print(repr(importer))
+...
+&lt;class '_frozen_importlib.BuiltinImporter'&gt;
+&lt;class '_frozen_importlib.FrozenImporter'&gt;
+&lt;class '_frozen_importlib_external.PathFinder'&gt;
+</code>
+                  </pre>
+        </section>
+
+        <section>
+          <h2>the import system - built-in</h2>
+          <pre style="font-size: 0.55em; width: 60em">
+                  <code style="max-height: 30em" class="lang-python" data-noescape data-trim>
+>>> import sys
+</code>
+                  </pre>
+
+          <pre style="font-size: 0.55em; width: 60em">
+                  <code style="max-height: 30em" class="lang-python" data-noescape data-trim>
+Python 3.9.4 (default, Apr 10 2021, 15:31:19)
+[GCC 8.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+                    
+>>> import sys
+>>> for importer in sys.meta_path:
+...     print(repr(importer))
+...
+<mark>&lt;class '_frozen_importlib.BuiltinImporter'&gt;</mark>
+&lt;class '_frozen_importlib.FrozenImporter'&gt;
+&lt;class '_frozen_importlib_external.PathFinder'&gt;
+</code>
+                  </pre>
+        </section>
+
+        <section>
+          <h2>the import system - frozen</h2>
+
+          <p>
+            <a href="https://wiki.python.org/moin/Freeze">freeze tool</a>,
+            <a href="https://pyinstaller.readthedocs.io/en/v3.3.1/when-things-go-wrong.html">pyinstaller</a>, etc.
+          </p>
+
+          <pre style="font-size: 0.55em; width: 60em">
+                  <code style="max-height: 30em" class="lang-python" data-noescape data-trim>
+Python 3.9.4 (default, Apr 10 2021, 15:31:19)
+[GCC 8.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+                    
+>>> import sys
+>>> for importer in sys.meta_path:
+...     print(repr(importer))
+...
+&lt;class '_frozen_importlib.BuiltinImporter'&gt;
+<mark>&lt;class '_frozen_importlib.FrozenImporter'&gt;</mark>
+&lt;class '_frozen_importlib_external.PathFinder'&gt;
+</code>
+                  </pre>
+        </section>
+
+        <section>
+          <h2>the import system - path finder</h2>
+
+          <pre style="font-size: 0.55em; width: 60em">
+                  <code style="max-height: 30em" class="lang-python" data-noescape data-trim>
+>>> import os
+</code>
+                  </pre>
+
+          <pre style="font-size: 0.55em; width: 60em">
+                  <code style="max-height: 30em" class="lang-python" data-noescape data-trim>
+Python 3.9.4 (default, Apr 10 2021, 15:31:19)
+[GCC 8.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+                    
+>>> import sys
+>>> for importer in sys.meta_path:
+...     print(repr(importer))
+...
+&lt;class '_frozen_importlib.BuiltinImporter'&gt;
+&lt;class '_frozen_importlib.FrozenImporter'&gt;
+<mark>&lt;class '_frozen_importlib_external.PathFinder'&gt;</mark>
+</code> </pre>
+        </section>
+
+        <section>
+          <h2>the import system - path finder</h2>
+
+          <pre style="font-size: 0.55em; width: 60em">
+                  <code style="max-height: 30em" class="lang-python" data-noescape data-trim>
+>>> import os
+
+<mark>&lt;class '_frozen_importlib_external.PathFinder'&gt;</mark>
+</code>
+                  </pre>
+
+          <pre style="font-size: 0.55em; width: 60em">
+                  <code style="max-height: 30em" class="lang-python" data-noescape data-trim>
+Python 3.9.4 (default, Apr 10 2021, 15:31:19)
+[GCC 8.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+                    
+>>> import sys
+>>> for path in sys.path:
+...     print(repr(path))
+...
+/opt/python3.9/lib/python39.zip
+/opt/python3.9/lib/python3.9
+/opt/python3.9/lib/python3.9/lib-dynload
+/Users/bernat/.local/lib/python3.9/site-packages
+/opt/python3.9/lib/python3.9/site-packages
+</code> </pre>
+        </section>
+
+        <section>
+          <h2>the import system - path finder</h2>
+
+          <pre style="font-size: 0.55em; width: 60em">
+                  <code style="max-height: 30em" class="lang-python" data-noescape data-trim>
+>>> import os
+
+<mark>&lt;class '_frozen_importlib_external.PathFinder'&gt;</mark>
+</code>
+                  </pre>
+
+          <pre style="font-size: 0.55em; width: 60em">
+                  <code style="max-height: 30em" class="lang-python" data-noescape data-trim>
+Python 3.9.4 (default, Apr 10 2021, 15:31:19)
+[GCC 8.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+                    
+>>> import sys
+>>> for path in sys.path:
+...     print(repr(path))
+...
+<mark>/opt/python3.9/lib/python39.zip</mark> <span style="color: black; background-color: cyan">standard library zipped</span>
+/opt/python3.9/lib/python3.9
+/opt/python3.9/lib/python3.9/lib-dynload
+/Users/bernat/.local/lib/python3.9/site-packages
+/opt/python3.9/lib/python3.9/site-packages
+</code> </pre>
+        </section>
+
+        <section>
+          <h2>the import system - path finder</h2>
+
+          <pre style="font-size: 0.55em; width: 60em">
+                  <code style="max-height: 30em" class="lang-python" data-noescape data-trim>
+>>> import os
+&lt;module 'os' from '/opt/python3.9/lib/python3.9/os.py'&gt;
+<mark>&lt;class '_frozen_importlib_external.PathFinder'&gt;</mark>
+</code>
+                  </pre>
+
+          <pre style="font-size: 0.55em; width: 60em">
+                  <code style="max-height: 30em" class="lang-python" data-noescape data-trim>
+Python 3.9.4 (default, Apr 10 2021, 15:31:19)
+[GCC 8.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+
+>>> import sys
+>>> for path in sys.path:
+...     print(repr(path))
+...
+/opt/python3.9/lib/python39.zip
+<mark>/opt/python3.9/lib/python3.9</mark> <span style="color: black; background-color: cyan">standard library directory</span>
+/opt/python3.9/lib/python3.9/lib-dynload
+/Users/bernat/.local/lib/python3.9/site-packages
+/opt/python3.9/lib/python3.9/site-packages
+</code> </pre>
+        </section>
+
+        <section>
+          <h2>the import system - path finder</h2>
+
+          <pre style="font-size: 0.55em; width: 60em">
+                  <code style="max-height: 30em" class="lang-python" data-noescape data-trim>
+>>> import _csv
+&lt;module '_csv' from '/opt/python3.9/lib/python3.9/lib-dynload/_csv.cpython-39dm-darwin.so'&gt;
+<mark>&lt;class '_frozen_importlib_external.PathFinder'&gt;</mark>
+</code>
+                  </pre>
+
+          <pre style="font-size: 0.55em; width: 60em">
+                  <code style="max-height: 30em" class="lang-python" data-noescape data-trim>
+Python 3.9.4 (default, Apr 10 2021, 15:31:19)
+[GCC 8.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+
+>>> import sys
+>>> for path in sys.path:
+...     print(repr(path))
+...
+/opt/python3.9/lib/python39.zip
+/opt/python3.9/lib/python3.9
+<mark>/opt/python3.9/lib/python3.9/lib-dynload</mark> <span style="color: black; background-color: cyan">standard library c-extensions</span>
+/Users/bernat/.local/lib/python3.9/site-packages
+/opt/python3.9/lib/python3.9/site-packages
+</code> </pre>
+        </section>
+
+        <section>
+          <h2>the import system - path finder</h2>
+
+          <pre style="font-size: 0.55em; width: 60em">
+                  <code style="max-height: 30em" class="lang-python" data-noescape data-trim>
+>>> import pytoml
+&lt;module 'pytoml' from '/opt/python3.9/lib/python3.9/site-packages/pytoml/__init__.py'&gt;
+<mark>&lt;class '_frozen_importlib_external.PathFinder'&gt;</mark>
+</code>
+                  </pre>
+
+          <pre style="font-size: 0.55em; width: 60em">
+                  <code style="max-height: 30em" class="lang-python" data-noescape data-trim>
+Python 3.9.4 (default, Apr 10 2021, 15:31:19)
+[GCC 8.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+
+>>> import sys
+>>> for path in sys.path:
+...     print(repr(path))
+...
+/opt/python3.9/lib/python39.zip
+/opt/python3.9/lib/python3.9
+/opt/python3.9/lib/python3.9/lib-dynload
+<mark>/Users/bernat/.local/lib/python3.9/site-packages</mark> <span
+                          style="color: black; background-color: cyan">user site package</span>
+/opt/python3.9/lib/python3.9/site-packages
+</code> </pre>
+        </section>
+
+        <section>
+          <h2>the import system - path finder</h2>
+
+          <pre style="font-size: 0.55em; width: 60em">
+                  <code style="max-height: 30em" class="lang-python" data-noescape data-trim>
+>>> pep517
+&lt;module 'pep517' from '/Users/bernat/.local/lib/python3.9/site-packages/pep517/__init__.py'&gt;
+<mark>&lt;class '_frozen_importlib_external.PathFinder'&gt;</mark>
+</code></pre>
+
+          <pre style="font-size: 0.55em; width: 60em">
+                  <code style="max-height: 30em" class="lang-python" data-noescape data-trim>
+Python 3.9.4 (default, Apr 10 2021, 15:31:19)
+[GCC 8.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+
+>>> import sys
+>>> for path in sys.path:
+...     print(repr(path))
+...
+/opt/python3.9/lib/python39.zip
+/opt/python3.9/lib/python3.9
+/opt/python3.9/lib/python3.9/lib-dynload
+/Users/bernat/.local/lib/python3.9/site-packages
+<mark>/opt/python3.9/lib/python3.9/site-packages</mark> <span style="color: black; background-color: cyan">global site package</span>
+</code></pre>
+        </section>
+
+        <section>
+          <h2>What is a virtual environment? - <a href="https://www.python.org/dev/peps/pep-0405/">PEP-405</a></h2>
+          <ul>
+            <i>isolated Python environment</i>
+            <div>
+              <li>access to its own site-package</li>
+              <li>
+                <b>shares access to host</b>
+                <ul>
+                  <li>built-ins</li>
+                  <li>standard library</li>
+                </ul>
+              </li>
+              <li>optionally isolated from the system site package</li>
+            </div>
+          </ul>
+        </section>
+
+        <section>
+          <h4>System python paths</h4>
+
+          <pre style="font-size: 0.55em; width: 60em">
+                  <code style="max-height: 30em" class="lang-python" data-noescape data-trim>
+>>> import sys
+>>> sys.executable
+/opt/python3.9/bin/python
+</code>
+                  </pre>
+
+          <pre style="font-size: 0.55em; width: 60em">
+                  <code style="max-height: 30em" class="lang-python" data-noescape>Python 3.9.4 (default, Apr 10 2021, 15:31:19)
+[GCC 8.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+
+>>> import sys
+>>> for path in sys.path:
+...     print(repr(path))
+...
+<mark>/opt/python3.9/lib/python39.zip</mark> <span style="color: black; background-color: cyan">standard library zipped</span>
+<mark>/opt/python3.9/lib/python3.9</mark> <span
+                          style="color: black; background-color: cyan">standard library</span>
+<mark>/opt/python3.9/lib/python3.9/lib-dynload</mark> <span style="color: black; background-color: cyan">standard library c-extension</span>
+
+<mark>/Users/bernat/.local/lib/python3.9/site-packages</mark> <span
+                          style="color: black; background-color: cyan">user site package</span>
+<mark>/opt/python3.9/lib/python3.9/site-packages</mark> <span style="color: black; background-color: cyan">global site package</span>
+</code> </pre>
+        </section>
+
+        <section>
+          <h4>virtual environment python paths - no global access</h4>
+
+          <pre style="font-size: 0.55em; width: 60em">
+                  <code style="max-height: 30em" class="lang-python" data-noescape data-trim>
+>>> import sys
+>>> sys.executable
+/Users/bernat/env/bin/python
+</code>
+                  </pre>
+
+          <pre style="font-size: 0.55em; width: 60em">
+                  <code style="max-height: 30em" class="lang-python" data-noescape>Python 3.9.4 (default, Apr 10 2021, 15:31:19)
+[GCC 8.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+
+>>> import sys
+>>> for path in sys.path:
+...     print(repr(path))
+...
+<mark>/opt/python3.9/lib/python39.zip</mark> <span style="color: black; background-color: cyan">standard library zipped</span>
+<mark>/opt/python3.9/lib/python3.9</mark> <span
+                          style="color: black; background-color: cyan">standard library</span>
+<mark>/opt/python3.9/lib/python3.9/lib-dynload</mark> <span style="color: black; background-color: cyan">standard library c-extension</span>
+<mark>/Users/bernat/env/lib/python3.9/site-package</mark> <span style="color: black; background-color: cyan">OWN site package</span>
+
+
+</code> </pre>
+        </section>
+
+        <section>
+          <h4>virtual environment python paths - global access</h4>
+
+          <pre style="font-size: 0.55em; width: 60em">
+                  <code style="max-height: 30em" class="lang-python" data-noescape data-trim>
+>>> import sys
+>>> sys.executable
+/Users/bernat/env/bin/python
+</code>
+                  </pre>
+
+          <pre style="font-size: 0.55em; width: 60em">
+                  <code style="max-height: 30em" class="lang-python" data-noescape data-trim>
+Python 3.9.4 (default, Apr 10 2021, 15:31:19)
+[GCC 8.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+
+>>> import sys
+>>> for path in sys.path:
+...     print(repr(path))
+...
+<mark>/opt/python3.9/lib/python39.zip</mark> <span style="color: black; background-color: cyan">standard library zipped</span>
+<mark>/opt/python3.9/lib/python3.9</mark> <span
+                          style="color: black; background-color: cyan">standard library</span>
+<mark>/opt/python3.9/lib/python3.9/lib-dynload</mark> <span style="color: black; background-color: cyan">standard library c-extension</span>
+<mark>/Users/bernat/env/lib/python3.9/site-package</mark> <span style="color: black; background-color: cyan">OWN site package</span>
+<mark>/Users/bernat/.local/lib/python3.9/site-packages</mark> <span
+                          style="color: black; background-color: cyan">user site package</span>
+<mark>/opt/python3.9/lib/python3.9/site-packages</mark> <span style="color: black; background-color: cyan">global site package</span>
+</code> </pre>
+        </section>
+
+        <section>
+          <h2>site-packages == purelib + platlib</h2>
+          Python defines two folders as python library locations, often set to same
+          <pre>
+              <code style="max-height: 800px;" class="lang-python" data-trim data-noescape>
+                Python 3.9.4 (default, Apr  6 2021, 00:00:00)
+                [GCC 11.0.1 20210324 (Red Hat 11.0.1-0)] on linux
+
+                >>> import sys, sysconfig
+
+                >>> sysconfig.get_path('platlib')
+                '/env/lib64/python3.9/site-packages'
+
+                >>> sysconfig.get_path('purelib')
+                '/env/lib/python3.9/site-packages'
+
+                >>> print('\n'.join(sys.path))
+                /usr/lib64/python39.zip
+                /usr/lib64/python3.9
+                /usr/lib64/python3.9/lib-dynload
+                <mark>/env/lib64/python3.9/site-packages</mark>
+                <mark>/env/lib/python3.9/site-packages</mark>
+              </code>
+          </pre>
+        </section>
+
+        <section>
+          <h2>What is an installed library made of?</h2>
+          <ul>
+            <li>
+              the code itself - a module or package
+              <pre><code class="lang-python" data-trim data-noescape>
+                  ❯ lsd C:\Users\gabor\git\env\lib\site-packages\setuptools --tree
+                   setuptools <mark><- package</mark>
+                  ├──  __init__.py <mark><- module</mark>
+                  ...
+                  ├──  build_meta.py
+                  ├──  cli-32.exe<mark><- resource file</mark>
+                  ...
+                  └──  windows_support.py
+              </code></pre>
+            </li>
+            <li class="fragment">
+              entry points - console/GUI generated alongside the python executable
+              <pre>
+              <code class="lang-python" data-trim data-noescape>
+                ❯ lsd --tree .\env\Scripts
+                 Scripts
+                ├──  pip-3.9.exe
+                ├──  pip.exe
+                ├──  pip3.9.exe
+                └──  pip3.exe
+              </code></pre>
+            </li>
+            <li class="fragment">
+              metadata declaring the package by/for the installer - mostly as defined by
+              <a href="https://www.python.org/dev/peps/pep-0427/">PEP-427</a>
+              <pre>
                 <code class="lang-python" data-trim data-noescape>
-                    >>> import pugs
-                    <div class="fragment">
-                    >>> pugs
-                    &lt;module 'pugs' from '/Users/bernat/Library/Python/3.7/lib/python/site-packages/pugs/__init__.py'&gt;
-                    </div>
+                  ❯ lsd C:\Users\gabor\git\env\lib\site-packages\setuptools-56.0.0.dist-info --tree
+                   setuptools-56.0.0.dist-info
+                  ├──  dependency_links.txt
+                  ├──  entry_points.txt
+                  ├──  INSTALLER
+                  ├──  LICENSE
+                  ├──  METADATA
+                  ├──  RECORD
+                  ├──  top_level.txt
+                  └──  WHEEL
                 </code>
             </pre>
+            </li>
+          </ul>
+        </section>
 
+        <section>
+          <h2>What would it mean to be able to run our pi logic?</h2>
+          <pre><code class="lang-python" data-trim data-noescape>
+            $ python
+            Python 3.9.4 (default, Apr 12 2021, 09:53:36)
+            [Clang 12.0.0 (clang-1200.0.32.29)] on darwin
+            >>> from pi_approx import approximate_pi
+            >>> approximate_pi(300)
+            3.1382593295155914
+            </code></pre>
+
+          <pre class="fragment"><code class="lang-python" data-trim data-noescape>
+            # pi_approx.py
+            from math import pi
+
+            def approximate_pi(iteration_count: int) -> float:
+                sign, result = 1, 0.0
+                for at in range(iteration_count):
+                    result += sign / (2 * at + 1)
+                    sign *= -1
+                return result * 4
+            </code></pre>
           <pre class="fragment">
                 <code class="lang-python" data-trim data-noescape>
-                    >>> import sys
-                    >>> print('\n'.join(sys.path))
-                    /Library/Frameworks/Python.framework/Versions/3.7/lib/python37.zip
-                    /Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7
-                    /Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/lib-dynload
-                    <mark>/Users/bernat/Library/Python/3.7/lib/python/site-packages</mark>
-                    /Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages
+                  ❯ lsd .\env\Lib\site-packages\pi_approx* --tree
+                   pi_approx.py
+                   pi_approx-1.0.dist-info
+                  ├──  direct_url.json
+                  ├──  INSTALLER
+                  ├──  LICENSE
+                  ├──  METADATA
+                  ├──  RECORD
+                  ├──  REQUESTED
+                  └──  WHEEL
                 </code>
-            </pre>
+                </pre>
         </section>
 
         <section>
-          <h5>High level package acquisition</h5>
-          <img data-src="img/diagram.png" style="max-height: 365px" />
-        </section>
-
-        <section>
-          <h5>Installed package structure</h5>
-
-          <ul>
-            <li>package files</li>
-            <li>
-              package metadata: {package}-{version}.dist-info -
-              <a href="https://www.python.org/dev/peps/pep-0427/">PEP-427</a>
-            </li>
-          </ul>
-
+          <h5>What is a python project made of?</h5>
           <pre>
-                <code class="lang-python" data-trim data-noescape>
-                    /Users/bernat/Library/Python/3.7/lib/python/site-packages/pugs
-                    ├── __init__.py
-                    ├── __pycache__
-                    │   ├── __init__.cpython-37.pyc
-                    │   └── logic.cpython-37.pyc
-                    └── logic.py
+                <code class="lang-python" data-noescape> project
+└──  pi_approx.py <mark>business logic file(s)</mark>
 
-                    /Users/bernat/Library/Python/3.7/lib/python/site-packages/pugs-0.0.1.dist-info
-                    ├── INSTALLER
-                    ├── LICENSE.txt
-                    ├── METADATA
-                    ├── RECORD
-                    ├── WHEEL
-                    ├── top_level.txt
-                    └── zip-safe
+
+
+
+
+
+
                 </code>
             </pre>
         </section>
-
         <section>
-          <h5>Installed package structure</h5>
-
-          <ul>
-            <li>
-              <mark>package files</mark>
-            </li>
-            <li>
-              package metadata: {package}-{version}.dist-info -
-              <a href="https://www.python.org/dev/peps/pep-0427/">PEP-427</a>
-            </li>
-          </ul>
-
+          <h5>What is a python project made of?</h5>
           <pre>
-                <code class="lang-python" data-trim data-noescape>
-                    <mark>/Users/bernat/Library/Python/3.7/lib/python/site-packages/pugs
-                    ├── __init__.py
-                    ├── __pycache__
-                    │   ├── __init__.cpython-37.pyc
-                    │   └── logic.cpython-37.pyc
-                    └── logic.py</mark>
+                <code class="lang-python" data-noescape> project
+├──  pi_approx.py
+└──  test_pi_approx.py <mark>test file(s)</mark>
 
-                    /Users/bernat/Library/Python/3.7/lib/python/site-packages/pugs-0.0.1.dist-info
-                    ├── INSTALLER
-                    ├── LICENSE.txt
-                    ├── METADATA
-                    ├── RECORD
-                    ├── WHEEL
-                    ├── top_level.txt
-                    └── zip-safe
+
+
+
+
+
+                </code>
+            </pre>
+        </section>
+        <section>
+          <h5>What is a python project made of?</h5>
+          <pre>
+                <code class="lang-python" data-noescape> project
+├──  pi_approx.py
+├──  test_pi_approx.py
+├──  LICENSE <mark>project management file(s)</mark>
+├──  README.md
+└── .github
+    └──  workflows
+        └──  check.yaml
+
                 </code>
             </pre>
         </section>
 
         <section>
-          <h5>Installed package structure</h5>
+          <h5>What is a python project made of?</h5>
+          <pre>
+                <code class="lang-python" data-noescape> project
+├──  pi_approx.py
+├──  test_pi_approx.py
+├──  LICENSE
+├──  README.md
+├── .github
+│   └──  workflows
+│       └──  check.yaml
+└──  pyproject.toml <mark>project packaging file(s)</mark>
+                </code>
+            </pre>
+        </section>
 
+        <section>
+          <h5>What is a python project made of?</h5>
           <ul>
-            <li>package files</li>
             <li>
-              <mark
-                >package metadata: {package}-{version}.dist-info -
-                <a href="https://www.python.org/dev/peps/pep-0427/">PEP-427</a></mark
-              >
+              layout on our development machine
+              <pre>
+                <code class="lang-python" data-noescape> project
+├──  pi_approx.py
+├──  test_pi_approx.py
+├──  LICENSE
+├──  README.md
+├── .github
+│   └──  workflows
+│       └──  check.yaml
+└──  pyproject.toml
+                </code>
+            </pre>
+            </li>
+            <li>
+              layout on their machine - the run environment
+              <pre>
+                <code class="lang-python" data-trim data-noescape>
+                  ❯ lsd .\env\Lib\site-packages\pi_approx* --tree
+                   pi_approx.py
+                   pi_approx-1.0.dist-info
+                  ├──  direct_url.json
+                  ├──  INSTALLER
+                  ├──  LICENSE
+                  ├──  METADATA
+                  ├──  RECORD
+                  ├──  REQUESTED
+                  └──  WHEEL
+                </code>
+                </pre>
             </li>
           </ul>
+        </section>
 
-          <pre>
-                <code class="lang-python" data-trim data-noescape>
-                    /Users/bernat/Library/Python/3.7/lib/python/site-packages/pugs
-                    ├── __init__.py
-                    ├── __pycache__
-                    │   ├── __init__.cpython-37.pyc
-                    │   └── logic.cpython-37.pyc
-                    └── logic.py
-
-                    <mark>/Users/bernat/Library/Python/3.7/lib/python/site-packages/pugs-0.0.1.dist-info
-                    ├── INSTALLER
-                    ├── LICENSE.txt
-                    ├── METADATA
-                    ├── RECORD
-                    ├── WHEEL
-                    ├── top_level.txt
-                    └── zip-safe</mark>
+        <section>
+          <h5>What is a python project made of?</h5>
+          <ul>
+            <li>
+              layout on our development machine
+              <pre>
+                <code class="lang-python" data-noescape> project
+├──  <mark>pi_approx.py</mark>
+├──  test_pi_approx.py
+├──  LICENSE
+├──  README.md
+├── .github
+│   └──  workflows
+│       └──  check.yaml
+└──  pyproject.toml
                 </code>
             </pre>
-        </section>
-
-        <section>
-          <h5>How to generate the packages?</h5>
-          <ul>
-            <li class="fragment">source distribution - sdist</li>
-            <li class="fragment">wheel distribution</li>
+            </li>
+            <li>
+              layout on their machine - the run environment
+              <pre>
+                <code class="lang-python" data-trim data-noescape>
+                  ❯ lsd .\env\Lib\site-packages\pi_approx* --tree
+                  <mark> pi_approx.py</mark>
+                   pi_approx-1.0.dist-info
+                  ├──  direct_url.json
+                  ├──  INSTALLER
+                  ├──  LICENSE
+                  ├──  METADATA
+                  ├──  RECORD
+                  ├──  REQUESTED
+                  └──  WHEEL
+                </code>
+                </pre>
+            </li>
           </ul>
-          <br />
-          <figure style="font-size: 12px">
-            <img src="img/how.jpeg" style="max-height: 400px" />
-            <figcaption>
-              Photo by
-              <a
-                href="https://unsplash.com/@ryanantooa?utm_source=ghost&amp;utm_medium=referral&amp;utm_campaign=api-credit"
-                >Ryan Antooa</a
-              >
-              /
-              <a href="https://unsplash.com/?utm_source=ghost&amp;utm_medium=referral&amp;utm_campaign=api-credit"
-                >Unsplash</a
-              >
-              - let's get started, excited!
-            </figcaption>
-          </figure>
         </section>
 
         <section>
-          <h5>What is a source distribution?</h5>
-          <ul class="fragment">
-            <li>source tree minus</li>
-            <ul>
-              <li>project management files</li>
-              <li>maintainer files</li>
-            </ul>
+          <h5>Shipping code to another machine</h5>
+          <!-- prettier-ignore -->
+          <!--  https://mermaid-js.github.io/mermaid-live-editor
+            graph LR
+              A["Developer source tree 🖿"] --- B>"package 📦"]
+              B .-> C["Target machine 🖿"]
+          -->
+          <img width="80%" data-src="img/dev_pkg_target.svg" />
+          <!-- prettier-ignore -->
+          <!--  https://mermaid-js.github.io/mermaid-live-editor
+          graph LR
+            A["Developer source tree 🖿"] .- B>"package 📦"]
+            B .-> U[("Centeral Package Store 🧀")]
+            U .-> D>"package 📦"]
+            D .-> C["Target machine 🖿"]
+          -->
+          <img class="fragment" width="80%" data-src="img/dev_pkg_via_central_target.svg" />
+        </section>
+
+        <section>
+          <h2>Package types - (<span style="color: red">sdist</span>)</h2>
+          <p>source distribution - resembles what we have on the developer machine</p>
+          <ul>
+            <li style="color: red">all the files needed to install (and test) a package from raw source</li>
+            <li class="fragment">
+              source tree minus
+              <ul>
+                <li>project management files</li>
+                <li>maintainer files</li>
+              </ul>
+            </li>
             <li class="fragment">has business logic, packaging, tests</li>
-            <li style="color: red" class="fragment">all the files needed to install a package from raw source</li>
           </ul>
+          <pre class="fragment">
+              <code class="lang-python" data-noescape> project
+├──  <mark>pi_approx.py</mark>
+├──  <mark>test_pi_approx.py</mark>
+├──  <mark>LICENSE</mark>
+├──  <mark>README.md</mark>
+├── .github
+│   └──  workflows
+│       └──  check.yaml
+└──  <mark>pyproject.toml</mark>
+              </code>
+          </pre>
         </section>
 
         <section>
-          <h5>What is a source distribution?</h5>
-          <pre style="max-width: 600px">
-                <code class="lang-python" data-trim data-noescape>
-                pugs-project
-                ├── .git
-                ├── README.rst
-                <mark>├── setup.cfg
-                ├── setup.py
-                ├── LICENSE.txt
-                ├── src
-                │   └── pugs
-                │       ├── __init__.py
-                │       └── logic.py
-                ├── tests
-                │   ├── test_init.py
-                │   └── test_logic.py
-                ├── tox.ini</mark>
-                └── azure-pipelines.yml
-                </code>
-            </pre>
-        </section>
-
-        <section>
-          <h5>What is a wheel?</h5>
-          <ul class="fragment">
-            <li>source tree minus</li>
-            <ul>
-              <li>project management files</li>
-              <li>maintainer files</li>
-              <li>tests</li>
-              <li>packaging files</li>
-            </ul>
-            <li style="color: red" class="fragment">
-              the installed binary files<span class="fragment"> with some meta data</span>
+          <h2>Package types - <span style="color: red">wheel</span></h2>
+          <p>resembles what we want on the target machine</p>
+          <ul>
+            <li>
+              <span style="color: red">the installed binary files with some meta data</span>
+            </li>
+            <li class="fragment">
+              source tree minus
+              <ul>
+                <li>project management files</li>
+                <li>maintainer files</li>
+                <li>tests</li>
+                <li>packaging files</li>
+              </ul>
             </li>
           </ul>
-        </section>
 
-        <section>
-          <h5>What is a wheel?</h5>
-          <pre>
-                <code class="lang-python" data-trim data-noescape>
-                    pugs-project
-                ├── .git
-                ├── README.rst
-                ├── setup.cfg
-                ├── setup.py
-                ├── LICENSE.txt
-                ├── src
-                │   └── <mark>pugs
-                │       ├── __init__.py
-                │       └── logic.py</mark>
-                ├── tests
-                │   ├── test_init.py
-                │   └── test_logic.py
-                ├── tox.ini
-                └── azure-pipelines.yml
-                </code>
+          <pre class="fragment">
+            <code class="lang-python" data-trim data-noescape>
+              ❯ lsd .\env\Lib\site-packages\pi_approx* --tree
+              <mark> pi_approx.py</mark>
+               pi_approx-1.0.dist-info
+              ├──  direct_url.json
+              ├──  INSTALLER
+              ├──  LICENSE
+              ├──  METADATA
+              ├──  RECORD
+              ├──  REQUESTED
+              └──  WHEEL
+            </code>
             </pre>
         </section>
 
         <section>
-          <h5>What is a wheel?</h5>
-          <pre style="font-size: 0.5em">
-                <code class="lang-python" data-trim data-noescape>
-                    <mark>
-                    /Users/bernat/Library/Python/3.7/lib/python/site-packages/pugs
-                    ├── __init__.py
-                    ├── __pycache__
-                    │   ├── __init__.cpython-37.pyc
-                    │   └── logic.cpython-37.pyc
-                    └── logic.py
-
-                    /Users/bernat/Library/Python/3.7/lib/python/site-packages/pugs-0.0.1.dist-info
-                    ├── INSTALLER
-                    ├── LICENSE.txt
-                    ├── METADATA
-                    ├── RECORD
-                    ├── WHEEL
-                    ├── top_level.txt
-                    └── zip-safe
-                    </mark>
-                </code>
-            </pre>
+          <h2>sdist or wheel</h2>
+          <ul>
+            <li>We always install wheel - if we have a sdist we first build a wheel from it</li>
+          </ul>
         </section>
 
         <section>
-          <h5>How to ship a source distribution?</h5>
-          <pre style="max-width: 600px">
-                <code class="lang-python" data-trim data-noescape>
-                pugs-project
-                ├── .git
-                ├── README.rst
-                <mark>├── setup.cfg
-                ├── setup.py
-                ├── LICENSE.txt
-                ├── src
-                │   └── pugs
-                │       ├── __init__.py
-                │       └── logic.py
-                ├── tests
-                │   ├── test_init.py
-                │   └── test_logic.py
-                ├── tox.ini</mark>
-                └── azure-pipelines.yml
-                </code>
-            </pre>
+          <h2>Breaking down shipping a library</h2>
+          <h5 style="color: lightskyblue">Generate a package</h5>
+          <!-- prettier-ignore -->
+          <!--  https://mermaid-js.github.io/mermaid-live-editor
+          graph LR
+            A["Developer source tree 🖿"] .-> B(["Build a package"])
+            B .-> C["package 📦"]
+            C .-> D(["upload package"])
+            D .-> U[("Centeral Package Store 🧀")]
+          -->
+          <img width="60%" data-src="img/generate_package.svg" />
+          <div class="fragment">
+            <h5 style="color: lightskyblue">Consume a package</h5>
+            <!-- prettier-ignore -->
+            <!--  https://mermaid-js.github.io/mermaid-live-editor
+          graph LR
+            U[("Centeral Package Store 🧀")] .-> A["package 📦"]
+            A .-> B(["Discover & download package"])
+            B .-> E{is wheel}
+            E .->|yes| F(["Build wheel"])
+            E .->|no| C(["Install wheel"])
+            F .-> C
+            C .-> D["Target machine 🖿"]
+          -->
+            <img width="95%" data-src="img/consume_package.svg" />
+          </div>
         </section>
 
         <section>
@@ -1045,14 +1730,14 @@
           <pre style="font-size: 0.5em">
                 <code class="lang-python" data-trim data-noescape>
                     <mark>
-                    /Users/bernat/Library/Python/3.7/lib/python/site-packages/pugs
+                    /Users/bernat/Library/Python/3.9/lib/python/site-packages/pugs
                     ├── __init__.py
                     ├── __pycache__
-                    │   ├── __init__.cpython-37.pyc
-                    │   └── logic.cpython-37.pyc
+                    │   ├── __init__.cpython-39.pyc
+                    │   └── logic.cpython-39.pyc
                     └── logic.py
 
-                    /Users/bernat/Library/Python/3.7/lib/python/site-packages/pugs-0.0.1.dist-info
+                    /Users/bernat/Library/Python/3.9/lib/python/site-packages/pugs-0.0.1.dist-info
                     ├── INSTALLER
                     ├── LICENSE.txt
                     ├── METADATA
@@ -1093,14 +1778,14 @@
           <pre style="font-size: 0.5em">
                 <code class="lang-python" data-trim data-noescape>
                     <mark>
-                    /Users/bernat/Library/Python/3.7/lib/python/site-packages/pugs
+                    /Users/bernat/Library/Python/3.9/lib/python/site-packages/pugs
                     ├── __init__.py
                     ├── __pycache__
-                    │   ├── __init__.cpython-37.pyc
-                    │   └── logic.cpython-37.pyc
+                    │   ├── __init__.cpython-39.pyc
+                    │   └── logic.cpython-39.pyc
                     └── logic.py
 
-                    /Users/bernat/Library/Python/3.7/lib/python/site-packages/pugs-0.0.1.dist-info
+                    /Users/bernat/Library/Python/3.9/lib/python/site-packages/pugs-0.0.1.dist-info
                     ├── INSTALLER
                     ├── LICENSE.txt
                     ├── METADATA
@@ -1124,7 +1809,7 @@
           <ul>
             <li>select and copy python files</li>
             <li class="fragment">
-              generate metadata - <a href="https://www.python.org/dev/peps/pep-0376/">PEP 376</a>
+              generate metadata - <a href="https://www.python.org/dev/peps/pep-0396/">PEP 396</a>
             </li>
             <li class="fragment">generate pyc files</li>
             <li class="fragment">
@@ -1140,7 +1825,7 @@
           <pre class="fragment">
                 <code class="lang-python" data-trim data-noescape>
                     <mark>
-                    psutil-5.6.2-cp37-cp37m-win_amd64.whl
+                    psutil-5.6.2-cp39-cp39m-win_amd64.whl
                     </mark>
                 </code>
             </pre>
@@ -1151,7 +1836,7 @@
           <ul>
             <li>select and copy python files <span style="color: red"> - requires correct setuptools version</span></li>
             <li class="fragment">
-              generate metadata - <a href="https://www.python.org/dev/peps/pep-0376/">PEP 376</a>
+              generate metadata - <a href="https://www.python.org/dev/peps/pep-0396/">PEP 396</a>
               <span style="color: red"> - requires correct wheels version</span>
             </li>
             <li class="fragment">
@@ -1171,7 +1856,7 @@
           <pre class="fragment">
                 <code class="lang-python" data-trim data-noescape>
                     <mark>
-                    psutil-5.6.2-cp37-cp37m-win_amd64.whl
+                    psutil-5.6.2-cp39-cp39m-win_amd64.whl
                     </mark>
                 </code>
             </pre>
