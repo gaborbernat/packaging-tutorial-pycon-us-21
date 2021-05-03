@@ -2003,22 +2003,6 @@ Type "help", "copyright", "credits" or "license" for more information.
         </section>
 
         <section>
-          <h2>Building a package with flit</h2>
-        </section>
-
-        <section>
-          <h2>Speed it up - <a href="https://cython.readthedocs.io/en/latest/src/quickstart/index.html">cython</a></h2>
-          <!-- prettier-ignore -->
-          <!--  https://mermaid-js.github.io/mermaid-live-editor
-          graph LR
-          U["Cython code <br/> (Python like)"] .->|cython| A["C code"]
-          A .->|C compiler| B["Binary library <br/>(.so/.pyd)"]
-          B ---|ExtensionFileLoader| D(["CPython <br/> interpreter"])
-          -->
-          <img width="80%" data-src="img/cython.svg" />
-        </section>
-
-        <section>
           <h2>Installing tools - <a href="https://pipxproject.github.io/pipx/">pipx</a></h2>
           <ol>
             <li>
@@ -2043,7 +2027,39 @@ Type "help", "copyright", "credits" or "license" for more information.
         </section>
 
         <section>
-          <h2>Let's package our 𝜋 approximator with flit</h2>
+          <h2>Building a package with flit</h2>
+          <p>Let's package our 𝜋 approximator with flit</p>
+        </section>
+
+        <section>
+          <h2>Speed it up - <a href="https://cython.readthedocs.io/en/latest/src/quickstart/index.html">cython</a></h2>
+          <!-- prettier-ignore -->
+          <!--  https://mermaid-js.github.io/mermaid-live-editor
+          graph LR
+          U["Cython code <br/> (Python like)"] .->|cython| A["C code"]
+          A .->|C compiler| B["Binary library <br/>(.so/.pyd)"]
+          B ---|ExtensionFileLoader| D(["CPython <br/> interpreter"])
+          -->
+          <img width="80%" data-src="img/cython.svg" />
+        </section>
+
+        <section>
+          <h2>Adding Cython speed-up</h2>
+          <ol>
+            <li>Move it to setuptools</li>
+            <li>Add cython</li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Cython speed-up</h2>
+          <pre><code class="lang-bash" data-trim data-noescape>
+          ❯ .\venv\Scripts\python.exe -m timeit -s 'from pi_approx import approximate_pi' 'approximate_pi(1_000_000)'
+          2 loops, best of 5: 105 msec per loop
+
+          ❯ .\venv\Scripts\python.exe -m timeit -s 'from pi_approx_cy import approximate_pi' 'approximate_pi(1_000_000)'
+          5 loops, best of 5: 68.4 msec per loop
+          </code></pre>
         </section>
 
         <section>
@@ -2089,25 +2105,65 @@ Type "help", "copyright", "credits" or "license" for more information.
           <h2>Install a package</h2>
           <ul>
             <li>pip</li>
-            <li>installer</li>
+            <li>Programmatic API - <a href="https://github.com/pradyunsg/installer">installer</a></li>
           </ul>
         </section>
 
         <section>
+          <h2>Testing a library</h2>
+        </section>
+
+        <section>
+          <h2>tox</h2>
+        </section>
+
+        <section>
+          <h2>Best practices</h2>
+          <ul>
+            <li>Always publish both a wheel and a sdist</li>
+            <li>Ship the test suite with your sdist</li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Creating an application</h1>
+        </section>
+
+        <section>
+          <h2>Application vs library</h2>
+        </section>
+
+        <section>
+          <h2>zipapp</h2>
+        </section>
+
+        <section>
+          <h2>zipapp package pi approximator</h2>
+        </section>
+
+        <section>
+          <h2>virtualenv - zipapp</h2>
+        </section>
+
+        <section>
+          <h2>pex</h2>
+        </section>
+
+        <section>
+          <h2>shiv</h2>
+        </section>
+
+        <section>
+          <h2>pyinstaller</h2>
+        </section>
+
+        <section>
+          <h2>use pyinstaller to generate an executable for pi approximator</h2>
+        </section>
+
+        <section>
           <h1>thank you</h1>
-          <div>
-            <img data-src="img/thats_all_folks.webp" style="margin-bottom: 0; border-bottom: 0; width: 50%" />
-            <p style="font-size: 12px; margin: 0 0">
-              <a href="https://commonhttps.wikimedia.org/wiki/File:Common_Seal_Phoca_vitulina.jpg"
-                >&copy; Creative Commons Attribution-Share Alike 2.5 Generic</a
-              >
-            </p>
-          </div>
-          <p>
-            <a href="https://www.bernat.tech/the-state-of-type-hints-in-python/"
-              >https://www.bernat.tech/the-state-of-type-hints-in-python/</a
-            >
-          </p>
+          <img src="img/questions.jpeg" style="max-height: 1000px" />
         </section>
       </div>
     </div>
