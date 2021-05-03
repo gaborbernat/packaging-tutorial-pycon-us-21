@@ -1721,158 +1721,7 @@ Type "help", "copyright", "credits" or "license" for more information.
         </section>
 
         <section>
-          <h5>How to ship a source distribution?</h5>
-          <img src="img/sdist.png" />
-        </section>
-
-        <section>
-          <h5>What is a wheel?</h5>
-          <pre style="font-size: 0.5em">
-                <code class="lang-python" data-trim data-noescape>
-                    <mark>
-                    /Users/bernat/Library/Python/3.9/lib/python/site-packages/pugs
-                    ├── __init__.py
-                    ├── __pycache__
-                    │   ├── __init__.cpython-39.pyc
-                    │   └── logic.cpython-39.pyc
-                    └── logic.py
-
-                    /Users/bernat/Library/Python/3.9/lib/python/site-packages/pugs-0.0.1.dist-info
-                    ├── INSTALLER
-                    ├── LICENSE.txt
-                    ├── METADATA
-                    ├── RECORD
-                    ├── WHEEL
-                    ├── top_level.txt
-                    └── zip-safe
-                    </mark>
-                </code>
-            </pre>
-        </section>
-
-        <section>
-          <h5>How to ship a wheel?</h5>
-          <pre>
-                <code class="lang-python" data-trim data-noescape>
-                    pugs-project
-                ├── .git
-                ├── README.rst
-                ├── setup.cfg
-                ├── setup.py
-                ├── LICENSE.txt
-                ├── src
-                │   └── <mark>pugs
-                │       ├── __init__.py
-                │       └── logic.py</mark>
-                ├── tests
-                │   ├── test_init.py
-                │   └── test_logic.py
-                ├── tox.ini
-                └── azure-pipelines.yml
-                </code>
-            </pre>
-        </section>
-
-        <section>
-          <h5>What is a wheel?</h5>
-          <pre style="font-size: 0.5em">
-                <code class="lang-python" data-trim data-noescape>
-                    <mark>
-                    /Users/bernat/Library/Python/3.9/lib/python/site-packages/pugs
-                    ├── __init__.py
-                    ├── __pycache__
-                    │   ├── __init__.cpython-39.pyc
-                    │   └── logic.cpython-39.pyc
-                    └── logic.py
-
-                    /Users/bernat/Library/Python/3.9/lib/python/site-packages/pugs-0.0.1.dist-info
-                    ├── INSTALLER
-                    ├── LICENSE.txt
-                    ├── METADATA
-                    ├── RECORD
-                    ├── WHEEL
-                    ├── top_level.txt
-                    └── zip-safe
-                    </mark>
-                </code>
-            </pre>
-        </section>
-
-        <section>
-          <h5>wheel</h5>
-          <img src="img/wheel.png" />
-        </section>
-
-        <section>
-          <h5>generate wheel - <a href="https://www.python.org/dev/peps/pep-0427/">PEP 427</a></h5>
-
-          <ul>
-            <li>select and copy python files</li>
-            <li class="fragment">
-              generate metadata - <a href="https://www.python.org/dev/peps/pep-0396/">PEP 396</a>
-            </li>
-            <li class="fragment">generate pyc files</li>
-            <li class="fragment">
-              generate binary library if c-extension package (C/CPP files)
-              <ul>
-                <li>get C/C++ toolchain (compiler, dependencies, libraries, etc)</li>
-              </ul>
-            </li>
-            <li class="fragment">
-              compress it into a file named <a href="https://www.python.org/dev/peps/pep-0425/">PEP 425</a>
-            </li>
-          </ul>
-          <pre class="fragment">
-                <code class="lang-python" data-trim data-noescape>
-                    <mark>
-                    psutil-5.6.2-cp39-cp39m-win_amd64.whl
-                    </mark>
-                </code>
-            </pre>
-        </section>
-
-        <section>
-          <h5>generate wheel - <a href="https://www.python.org/dev/peps/pep-0427/">PEP 427</a></h5>
-          <ul>
-            <li>select and copy python files <span style="color: red"> - requires correct setuptools version</span></li>
-            <li class="fragment">
-              generate metadata - <a href="https://www.python.org/dev/peps/pep-0396/">PEP 396</a>
-              <span style="color: red"> - requires correct wheels version</span>
-            </li>
-            <li class="fragment">
-              generate pyc files <span style="color: red"> - requires correct python version</span>
-            </li>
-            <li class="fragment">
-              generate binary library if c-extension package (C/CPP files)
-              <ul>
-                <li>get C/C++ toolchain (compiler, dependencies, libraries, etc)</li>
-              </ul>
-            </li>
-            <li class="fragment">
-              compress it into a file named <a href="https://www.python.org/dev/peps/pep-0425/">PEP 425</a>
-              <span style="color: red"> - requires correct wheels version</span>
-            </li>
-          </ul>
-          <pre class="fragment">
-                <code class="lang-python" data-trim data-noescape>
-                    <mark>
-                    psutil-5.6.2-cp39-cp39m-win_amd64.whl
-                    </mark>
-                </code>
-            </pre>
-        </section>
-
-        <section>
-          <h5>Why?</h5>
-
-          <p>if version 41.0.0 setuptools adds <i>collect_magic_files</i></p>
-          <pre style="max-width: 800px">
-                <code class="lang-python" data-trim data-noescape>
-                    from setuptools import setup
-                    setup(collect_magic_files=True)
-                </code>
-            </pre>
-          <p class="fragment">running with version 40.0.0 will not work</p>
+          <h2>Build a package</h2>
         </section>
 
         <section>
@@ -1897,117 +1746,40 @@ Type "help", "copyright", "credits" or "license" for more information.
         <section>
           <h5>History of packaging</h5>
           <ul>
-            <li>2000 - Python 1.6 - distutils - setup.py introduced</li>
-            <li class="fragment">2004 - setuptools - quickly became de facto standard</li>
-            <li class="fragment">2008 - pip (replaces easy_install)</li>
-            <li class="fragment">2014 - wheels</li>
-            <li class="fragment">setuptools/wheels - setup.py arbitrary user code</li>
-            <li class="fragment">
-              2015 - flit - declarative over dynamic (arbitrary code run)
+            <li>
+              2000 - Python 1.6 - <a href="https://docs.python.org/3/library/distutils.html">distutils</a> - setup.py
+              introduced:
               <ul>
-                <li class="fragment">easier to understand</li>
-                <li class="fragment">harder to get wrong</li>
+                <li>used as invocation interface</li>
+                <li>configuration as Python code</li>
               </ul>
             </li>
-          </ul>
-        </section>
-
-        <section>
-          <h5>How does a build work? - sdist - developer machine</h5>
-
-          <ul>
-            <li>
-              on the source tree invoke the command
-              <pre style="max-width: 800px; font-size: 15px">
-                    <code class="lang-python" data-trim data-noescape>
-                        python setup.py sdist
-                    </code>
-                    </pre>
-            </li>
-
-            <li>
-              upload to pypi
-              <pre style="max-width: 800px; font-size: 15px">
-                    <code class="lang-python" data-trim data-noescape>
-                        python setup.py upload
-                        # http connection - post
-                    </code>
-                    </pre>
-            </li>
-          </ul>
-        </section>
-
-        <section>
-          <h5>How does a build work? - sdist - developer machine</h5>
-
-          <ul>
-            <li>
-              on the source tree invoke the command
-              <pre style="max-width: 800px; font-size: 15px">
-                    <code class="lang-python" data-trim data-noescape>
-                        python setup.py sdist
-                    </code>
-                    </pre>
-            </li>
-
-            <li style="text-decoration: line-through">
-              upload to pypi
-              <pre style="max-width: 800px; font-size: 15px">
-                    <code class="lang-python" data-trim data-noescape>
-                        python setup.py upload
-                        # http connection - post
-                    </code>
-                    </pre>
-            </li>
-          </ul>
-        </section>
-
-        <section>
-          <h5>How does a build work? - sdist - developer machine</h5>
-
-          <ul>
-            <li>
-              on the source tree invoke the command
-              <pre style="max-width: 800px; font-size: 15px">
-                    <code class="lang-python" data-trim data-noescape>
-                        python setup.py sdist
-                    </code>
-                    </pre>
-            </li>
-
-            <li>
-              upload to pypi
-              <pre style="max-width: 800px; font-size: 15px">
-                    <code class="lang-python" data-trim data-noescape>
-                        <mark>twine upload package-sdist.targ.gz</mark>
-                        # http<mark>s</mark> connection - post - guaranteed
-                    </code>
-                    </pre>
-            </li>
-          </ul>
-        </section>
-
-        <section>
-          <h5>How does a build work? - sdist - user machine</h5>
-
-          <ul>
-            <pre style="max-width: 800px">
-                <code class="lang-python" data-trim data-noescape>
-                    pip install pugs==1.0.0
-                </code>
-            </pre>
-
-            <li class="fragment">discover the package from PyPi</li>
-            <li class="fragment">download the sdist and extract it</li>
             <li class="fragment">
-              invoke setuptools to perform the install
-              <pre style="max-width: 800px; font-size: 15px">
-                <code class="lang-python" data-trim data-noescape>
-                    python setup.py install
-                </code>
-            </pre>
+              2004 - <a href="https://setuptools.readthedocs.io/en/latest/">setuptools</a> quickly became de facto
+              standard
+            </li>
+            <li class="fragment">2014 - wheels - <a href="https://www.python.org/dev/peps/pep-0427/">PEP-427</a></li>
+            <li class="fragment">
+              2015 - <a href="https://flit.readthedocs.io/en/latest/cmdline.html">flit</a> - declarative over dynamic
+              (avoid arbitrary code run)
+              <ul>
+                <li>easier to understand</li>
+                <li>harder to get wrong</li>
+              </ul>
+            </li>
+            <li class="fragment">
+              2018 - <a href="https://python-poetry.org/docs/">poetry</a> - single tool to rule them all
             </li>
           </ul>
+        </section>
+
+        <section>
+          <h5>How does a build used to work</h5>
+          <p>navigate to the developer source tree and invoke the following command(s)</p>
+          <pre><code class="lang-bash" data-trim data-noescape>
+              python setup.py sdist  # build a source distribution
+              python setup.py bdist_wheel  # build a wheel
+            </code></pre>
         </section>
 
         <section>
@@ -2015,8 +1787,7 @@ Type "help", "copyright", "credits" or "license" for more information.
           <ul>
             <li>
               setuptools pulled in from the builder python
-              <pre style="max-width: 800px; font-size: 15px">
-                <code class="lang-python" data-trim data-noescape>
+              <pre><code class="lang-bash" data-trim data-noescape>
                     <mark>python</mark> setup.py sdist
                     <mark>python</mark> setup.py install
                 </code>
@@ -2024,8 +1795,8 @@ Type "help", "copyright", "credits" or "license" for more information.
             </li>
             <li class="fragment">
               cryptic error if build dependencies are missing
-              <pre style="max-width: 800px; font-size: 15px">
-                        <code class="lang-python" data-trim data-noescape>
+              <pre>
+                        <code class="lang-bash" data-trim data-noescape>
                                   File "setup_build.py", line 99, in run
                                         from Cython.Build import cythonize
                                     ImportError: No module named Cython.Build
@@ -2039,34 +1810,42 @@ Type "help", "copyright", "credits" or "license" for more information.
 
         <section>
           <h5>Problem 1 - build dependencies</h5>
-          <p style="margin: 0">Idea: declarative build environment provision</p>
-          <pre style="max-width: 800px; font-size: 15px; max-height: 50px">
-                <code class="lang-python" data-trim data-noescape>
-                    python setup.py install
-                </code>
-                </pre>
           <ul>
-            <li>create temporary folder</li>
-            <li class="fragment">
-              create an isolated python environment
-              <pre style="max-width: 800px; font-size: 15px; max-height: 50px">
-                <code class="lang-python" data-trim data-noescape>
-                    python -m virtualenv our_build_env
+            <li>
+              Idea: declarative build environment provision
+              <pre>
+                <code class="lang-bash" data-trim data-noescape>
+                    python setup.py bdist_wheel
                 </code>
                 </pre>
             </li>
+
             <li class="fragment">
-              install build dependencies
-              <pre style="max-width: 800px; font-size: 15px; max-height: 50px">
-                <code class="lang-python" data-trim data-noescape>
-                    our_build_env/bin/python -m pip dep1 dep2
-                </code>
-                </pre>
+              create temporary folder
+              <ul>
+                <li>
+                  create an isolated python environment
+                  <pre>
+                    <code class="lang-bash" data-trim data-noescape>
+                        python -m venv our_build_env
+                    </code>
+                    </pre>
+                </li>
+                <li>
+                  install build dependencies
+                  <pre>
+                    <code class="lang-bash" data-trim data-noescape>
+                        our_build_env/bin/python -m pip dep1 dep2
+                    </code>
+                    </pre>
+                </li>
+              </ul>
             </li>
+
             <li class="fragment">
               generate a wheel, that we can simply install afterwards
-              <pre style="max-width: 800px; font-size: 15px; max-height: 50px">
-                <code class="lang-python" data-trim data-noescape>
+              <pre>
+                <code class="lang-bash" data-trim data-noescape>
                     our_build_env/bin/python setup.py bdist_wheel
                 </code>
                 </pre>
@@ -2080,9 +1859,9 @@ Type "help", "copyright", "credits" or "license" for more information.
           <ul>
             <li><a href="https://www.python.org/dev/peps/pep-0518/">PEP-518</a></li>
             <li>
-              specify deps via pyproject.toml
-              <pre style="max-width: 800px; font-size: 15px">
-                <code class="lang-python" data-trim data-noescape>
+              specify deps via pyproject.toml - must be at the root of your project
+              <pre>
+                <code class="lang-toml" data-trim data-noescape>
                     [build-system]
                     requires = [
                         "setuptools >= 40.8.0",
@@ -2118,31 +1897,13 @@ Type "help", "copyright", "credits" or "license" for more information.
             <li class="fragment">
               <b>build frontend</b> - prepares the isolated environment, and invokes the backend
               <ul>
+                <li><a href="https://pypa-build.readthedocs.io/en/latest/">build</a> - unified CLI for backends</li>
+                <li>poetry</li>
                 <li>pip - PEP-518 support with version 18.0</li>
                 <li>tox - PEP-518 support with version 3.3.0</li>
-                <li>poetry</li>
               </ul>
             </li>
           </ul>
-        </section>
-
-        <section>
-          <h5>yay</h5>
-          <figure style="font-size: 12px">
-            <img style="max-height: 600px" src="img/photo-1512723185835-0700e5069a9a.jpeg" />
-            <figcaption>
-              Photo by
-              <a
-                href="https://unsplash.com/@star2dev?utm_source=ghost&amp;utm_medium=referral&amp;utm_campaign=api-credit"
-                >Bruce Galpin</a
-              >
-              /
-              <a href="https://unsplash.com/?utm_source=ghost&amp;utm_medium=referral&amp;utm_campaign=api-credit"
-                >Unsplash</a
-              >
-              - yay!
-            </figcaption>
-          </figure>
         </section>
 
         <section>
@@ -2150,14 +1911,14 @@ Type "help", "copyright", "credits" or "license" for more information.
           <ul>
             <li>
               PEP-518 involves still calling to setup.py
-              <pre style="max-width: 800px; font-size: 15px">
-                <code class="lang-python" data-trim data-noescape>
+              <pre>
+                <code class="lang-bash" data-trim data-noescape>
                     our_build_env/bin/python <mark>setup.py</mark> bdist_wheel
                 </code>
             </pre>
             </li>
             <li>setup.py allows arbitrary python code to run - cannot change due to backward compatibility</li>
-            <li>flit implementation still involves generating setup.py and adhering to those limitations</li>
+            <li>flit implementation still needed generating setup.py and adhering to those limitations</li>
           </ul>
         </section>
 
@@ -2167,25 +1928,23 @@ Type "help", "copyright", "credits" or "license" for more information.
             <li><a href="https://www.python.org/dev/peps/pep-0517/">PEP-517</a></li>
             <li>
               So instead of:
-              <pre style="max-width: 700px; font-size: 15px">
-                        <code class="lang-python" data-trim data-noescape>
+              <pre>
+                        <code class="lang-bash" data-trim data-noescape>
                             our_build_env/bin/python <mark>setup.py</mark> bdist_wheel
                         </code>
                     </pre>
             </li>
             <li>
               Allow build backends to expose invocation end-points:
-              <pre style="max-width: 700px; font-size: 15px">
-                        <code class="lang-python" data-trim data-noescape>
-                            [build-system]
-                            requires = ["flit"]
-                            build-backend = "flit.api:main"
-                        </code>
-                    </pre>
+              <pre><code class="lang-toml" data-trim data-noescape>
+              [build-system]
+              requires = ["flit"]
+              build-backend = "flit.api:main"
+              </code></pre>
             </li>
             <li>
               And the build frontend will now do:
-              <pre style="max-width: 700px; font-size: 15px">
+              <pre>
                         <code class="lang-python" data-trim data-noescape>
                             import flit.api
                             backend = flit.api.main
@@ -2201,90 +1960,26 @@ Type "help", "copyright", "credits" or "license" for more information.
         <section>
           <h5>Problem 2 - diversity - better user interface</h5>
           <ul>
-            <li><a href="https://www.python.org/dev/peps/pep-0517/">PEP-517</a></li>
-            <li>
-              So instead of:
-              <pre style="max-width: 700px; font-size: 15px">
-                        <code class="lang-python" data-trim data-noescape>
-                            our_build_env/bin/python <mark>setup.py</mark> bdist_wheel
-                        </code>
-                    </pre>
-            </li>
-            <li>
-              Allow build backends to expose invocation end-points:
-              <pre style="max-width: 700px; font-size: 15px">
-                        <code class="lang-python" data-trim data-noescape>
-                            [build-system]
-                            requires = ["flit"]
-                            build-backend = "<mark>flit.api</mark>:main"
-                        </code>
-                    </pre>
-            </li>
-            <li>
-              And the build frontend will now do:
-              <pre style="max-width: 700px; font-size: 15px">
-                        <code class="lang-python" data-trim data-noescape>
-                            import <mark>flit.api</mark>
-                            backend = <mark>flit.api.main</mark>
-
-                            backend.build_wheel()  # build wheel via
-                            backend.build_sdist()  # build source distribution via
-                        </code>
-                    </pre>
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h5>Problem 2 - diversity - better user interface</h5>
-          <ul>
-            <li><a href="https://www.python.org/dev/peps/pep-0517/">PEP-517</a></li>
-            <li>
-              So instead of:
-              <pre style="max-width: 700px; font-size: 15px">
-                        <code class="lang-python" data-trim data-noescape>
-                            our_build_env/bin/python <mark>setup.py</mark> <mark>bdist_wheel</mark>
-                        </code>
-                    </pre>
-            </li>
-            <li>
-              Allow build backends to expose invocation end-points:
-              <pre style="max-width: 700px; font-size: 15px">
-                        <code class="lang-python" data-trim data-noescape>
-                            [build-system]
-                            requires = ["flit"]
-                            build-backend = "<mark>flit.api</mark>:main"
-                        </code>
-                    </pre>
-            </li>
-            <li>
-              And the build frontend will now do:
-              <pre style="max-width: 700px; font-size: 15px">
-                        <code class="lang-python" data-trim data-noescape>
-                            import <mark>flit.api</mark>
-                            backend = <mark>flit.api.main</mark>
-
-                            <mark>backend.build_wheel</mark>()  # build wheel via
-                            backend.build_sdist()  # build source distribution via
-                        </code>
-                    </pre>
-            </li>
-          </ul>
-        </section>
-
-        <section>
-          <h5>Problem 2 - diversity - better user interface</h5>
-          <ul>
             <li>
               <a href="https://www.python.org/dev/peps/pep-0517/">PEP-517</a> backend support
               <ul>
-                <li>setuptools - <i>setuptools.build_meta</i> - version 40.8+</li>
-                <li class="fragment">flit - <i>flit.buildapi</i></li>
-                <li class="fragment">poetry - <i>poetry.masonry.api</i> - version 0.12.11</li>
+                <li>
+                  setuptools - <span style="font-weight: bold; color: lightslategray">setuptools.build_meta</span> -
+                  version 40.8+
+                </li>
+                <li class="fragment">
+                  flit - <span style="font-weight: bold; color: lightslategray">flit.buildapi</span>
+                </li>
+                <li class="fragment">
+                  poetry - <span style="font-weight: bold; color: lightslategray">poetry.masonry.api</span> - version
+                  0.12.11
+                </li>
               </ul>
             </li>
             <li class="fragment">
               <a href="https://www.python.org/dev/peps/pep-0517/">PEP-517</a> frontend support
               <ul>
+                <li>build</li>
                 <li>pip 19.0</li>
                 <li>tox 3.3.0</li>
               </ul>
@@ -2293,117 +1988,109 @@ Type "help", "copyright", "credits" or "license" for more information.
         </section>
 
         <section>
-          <h5>Caveats</h5>
+          <h2>How to build a package?</h2>
           <ul>
-            <li class="fragment">No editable install support yet</li>
-            <li class="fragment">requires fairly new pip</li>
-            <ul class="fragment">
-              <li>on developer machine - if wheel distribution</li>
-              <li class="fragment">on user machine - if source distribution</li>
-            </ul>
-          </ul>
-        </section>
-
-        <section>
-          <h5>Build dependencies - developer machine</h5>
-          <ul>
-            <li>pip build command planned, for now <a href="https://pypi.org/project/pep517/">pep517 package</a></li>
-            <li class="fragment">
-              to build a <i><b>wheel</b></i> going forward use the following command:
-              <pre style="max-width: 1024px; font-size: 15px">
-                    <code class="lang-python" data-trim data-noescape>
-                    <mark>python -m pep517.build --binary --out-dir /tmp/build-to .</mark>
-                    # old -> python setup.py bdist_wheel
-                </code>
-                    </pre>
-            </li>
-            <li class="fragment">
-              to build a <i><b>sdist</b></i> going forward use the following command:
-              <pre style="max-width: 1024px; font-size: 15px">
-                    <code class="lang-python" data-trim data-noescape>
-                    <mark>python -m pep517.build --source --out-dir /tmp/build-to .</mark>
-                    # old -> python setup.py sdist
-                </code>
-                    </pre>
-            </li>
-          </ul>
-        </section>
-
-        <section>
-          <h5>Benefits</h5>
-          <ul>
-            <li class="fragment">Reproducible declarative builds</li>
-            <li class="fragment">No more need for <i>setup.py</i></li>
-            <li class="fragment" style="color: red">simpler packaging that fails less often</li>
-          </ul>
-        </section>
-
-        <section>
-          <h5>tox</h5>
-          <figure style="font-size: 12px">
-            <img style="max-width: 900px; max-height: 800px" src="img/sad.jpeg" />
-            <figcaption>
-              Photo by
-              <a
-                href="https://unsplash.com/@matthewhenry?utm_source=ghost&amp;utm_medium=referral&amp;utm_campaign=api-credit"
-                >Matthew Henry</a
-              >
-              /
-              <a href="https://unsplash.com/?utm_source=ghost&amp;utm_medium=referral&amp;utm_campaign=api-credit"
-                >Unsplash</a
-              >
-              - no free lunch here, yet!
-            </figcaption>
-          </figure>
-        </section>
-
-        <section>
-          <h5>tox</h5>
-          <ul>
-            <li>Not implicitly activated (version 4 probably will have it)</li>
+            <li>Pick your build backend</li>
             <li>
-              add
-              <pre style="max-width: 700px; font-size: 15px">
-                        <code class="lang-python" data-trim data-noescape>
-                            [tox]
-                            isolated_build = True
-                        </code>
-                    </pre>
+              Use <span style="font-weight: bold; color: lightslategray">pyproject.toml </span> to specify your
+              <ul>
+                <li>build dependencies</li>
+                <li>build backend interface</li>
+              </ul>
             </li>
-            <li>during the packaging phase the source distribution will be built inside an isolated env</li>
+            <li>Follow the docs of your backend on how to configure it</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>Building a package with flit</h2>
+        </section>
+
+        <section>
+          <h2>Speed it up - <a href="https://cython.readthedocs.io/en/latest/src/quickstart/index.html">cython</a></h2>
+          <!-- prettier-ignore -->
+          <!--  https://mermaid-js.github.io/mermaid-live-editor
+          graph LR
+          U["Cython code <br/> (Python like)"] .->|cython| A["C code"]
+          A .->|C compiler| B["Binary library <br/>(.so/.pyd)"]
+          B ---|ExtensionFileLoader| D(["CPython <br/> interpreter"])
+          -->
+          <img width="80%" data-src="img/cython.svg" />
+        </section>
+
+        <section>
+          <h2>Installing tools - <a href="https://pipxproject.github.io/pipx/">pipx</a></h2>
+          <ol>
             <li>
-              RIP
-              <pre style="max-width: 700px; font-size: 15px">
-                        <code class="lang-python" data-trim data-noescape>
-                            python setup.py sdist
-                        </code>
-                    </pre>
+              Install pipx by installing <a href="https://pypi.org/project/pipx-in-pipx/">pipx-in-pipx</a>
+              <pre><code class="lang-bash" data-trim data-noescape>
+              python -m pip install pipx-in-pipx
+              </code></pre>
+            </li>
+            <li>
+              Make pipx path available on your <span style="font-weight: bold; color: lightslategray">PATH</span> -
+              <span style="font-weight: bold; color: lightslategray">~/.local/bin</span>
+            </li>
+
+            <li>
+              Install your tools via pipx
+              <pre><code class="lang-bash" data-trim data-noescape>
+              pipx install build
+              pipx install flit
+              </code></pre>
+            </li>
+          </ol>
+        </section>
+
+        <section>
+          <h2>Let's package our 𝜋 approximator with flit</h2>
+        </section>
+
+        <section>
+          <h2>Upload a package</h2>
+          <ul>
+            <li>
+              Historically it was (deprecated)
+              <pre><code class="lang-bash" data-trim data-noescape>
+              python setup.py upload
+              </code></pre>
+            </li>
+            <li class="fragment">
+              today we use <a href="https://twine.readthedocs.io/en/latest/">twine</a>
+              <pre><code class="lang-bash" data-trim data-noescape>
+              twine upload dist/*
+              </code></pre>
+            </li>
+            <li class="fragment">
+              Though some tools do abstract this away:
+              <pre><code class="lang-bash" data-trim data-noescape>
+              flit publish
+              poetry publish
+              </code></pre>
             </li>
           </ul>
         </section>
 
         <section>
-          <h5>summary</h5>
-          <ul style="margin-bottom: 15px">
-            <li>PEP-518 - ensures declarative and reproducible build environments</li>
-            <li class="fragment">PEP-517 - ensures we no longer build on top of old/legacy setup.py infrastructure</li>
+          <h2>Discover and download a package</h2>
+          <ul>
+            <li>For human discovery visit <a href="https://pypi.org">PyPI</a></li>
+            <li class="fragment">
+              Machines use the <a href="https://www.python.org/dev/peps/pep-0503/">Simple Repository API ~ PEP-503</a>,
+              e.g. <a href="https://pypi.org/simple/build/">build</a>
+              <pre><code class="lang-bash" data-trim data-noescape>
+                pip download 'build&lt;0.3' --no-deps -d wheels
+              </code></pre>
+            </li>
           </ul>
+        </section>
 
-          <br />
-          <figure class="fragment" style="font-size: 12px">
-            <img style="max-height: 450px" src="img/yay.jpeg" />
-            <figcaption>
-              Photo by
-              <a
-                href="https://unsplash.com/@yoadsh?utm_source=ghost&amp;utm_medium=referral&amp;utm_campaign=api-credit"
-                >Yoad Shejtman</a
-              >
-              /
-              <a href="https://unsplash.com/?utm_source=ghost&amp;utm_medium=referral&amp;utm_campaign=api-credit"
-                >Unsplash</a
-              >
-            </figcaption>
-          </figure>
+        <section>
+          <h2>Install a package</h2>
+          <ul>
+            <li>pip</li>
+            <li>installer</li>
+          </ul>
         </section>
 
         <section>

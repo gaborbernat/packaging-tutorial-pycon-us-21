@@ -1,0 +1,114 @@
+<svg id="mermaid-1620035092681" width="100%"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink" height="74.03773880004883" style="max-width: 853.3666381835938px;" viewBox="0 -0.000003814697265625 853.3666381835938 74.03773880004883">
+    <style>#mermaid-1620035092681{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;fill:#000000;}#mermaid-1620035092681 .error-icon{fill:#552222;}#mermaid-1620035092681 .error-text{fill:#552222;stroke:#552222;}#mermaid-1620035092681 .edge-thickness-normal{stroke-width:2px;}#mermaid-1620035092681 .edge-thickness-thick{stroke-width:3.5px;}#mermaid-1620035092681 .edge-pattern-solid{stroke-dasharray:0;}#mermaid-1620035092681 .edge-pattern-dashed{stroke-dasharray:3;}#mermaid-1620035092681 .edge-pattern-dotted{stroke-dasharray:2;}#mermaid-1620035092681 .marker{fill:#000000;stroke:#000000;}#mermaid-1620035092681 .marker.cross{stroke:#000000;}#mermaid-1620035092681 svg{font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:16px;}#mermaid-1620035092681 .label{font-family:"trebuchet ms",verdana,arial,sans-serif;color:#000000;}#mermaid-1620035092681 .cluster-label text{fill:#333;}#mermaid-1620035092681 .cluster-label span{color:#333;}#mermaid-1620035092681 .label text,#mermaid-1620035092681 span{fill:#000000;color:#000000;}#mermaid-1620035092681 .node rect,#mermaid-1620035092681 .node circle,#mermaid-1620035092681 .node ellipse,#mermaid-1620035092681 .node polygon,#mermaid-1620035092681 .node path{fill:#cde498;stroke:#13540c;stroke-width:1px;}#mermaid-1620035092681 .node .label{text-align:center;}#mermaid-1620035092681 .node.clickable{cursor:pointer;}#mermaid-1620035092681 .arrowheadPath{fill:green;}#mermaid-1620035092681 .edgePath .path{stroke:#000000;stroke-width:1.5px;}#mermaid-1620035092681 .flowchart-link{stroke:#000000;fill:none;}#mermaid-1620035092681 .edgeLabel{background-color:#e8e8e8;text-align:center;}#mermaid-1620035092681 .edgeLabel rect{opacity:0.5;background-color:#e8e8e8;fill:#e8e8e8;}#mermaid-1620035092681 .cluster rect{fill:#cdffb2;stroke:#6eaa49;stroke-width:1px;}#mermaid-1620035092681 .cluster text{fill:#333;}#mermaid-1620035092681 .cluster span{color:#333;}#mermaid-1620035092681 div.mermaidTooltip{position:absolute;text-align:center;max-width:200px;padding:2px;font-family:"trebuchet ms",verdana,arial,sans-serif;font-size:12px;background:hsl(78.1578947368,58.4615384615%,84.5098039216%);border:1px solid #6eaa49;border-radius:2px;pointer-events:none;z-index:100;}#mermaid-1620035092681:root{--mermaid-font-family:"trebuchet ms",verdana,arial,sans-serif;}#mermaid-1620035092681 flowchart{fill:apa;}</style>
+    <rect width="100%" height="100%" fill="cyan" />
+    <g>
+        <g class="output">
+            <g class="clusters"></g>
+            <g class="edgePaths">
+                <g class="edgePath LS-U LE-A" id="L-U-A" style="opacity: 1;">
+                    <path class="path" d="M121.63679504394531,37.01886749267578L129.8208557764689,37.01886749267578C138.00491650899252,37.01886749267578,154.3730379740397,37.01886749267578,170.7411594390869,37.01886749267578C187.10928090413412,37.01886749267578,203.4774023691813,37.01886749267578,211.66146310170492,37.01886749267578L219.84552383422852,37.01886749267578" marker-end="url(#arrowhead4243)" style="fill:none;stroke-width:2px;stroke-dasharray:3;"></path>
+                    <defs>
+                        <marker id="arrowhead4243" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto">
+                            <path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path>
+                        </marker>
+                    </defs>
+                </g>
+                <g class="edgePath LS-A LE-B" id="L-A-B" style="opacity: 1;">
+                    <path class="path" d="M288.36911392211914,37.01886749267578L298.97652371724445,37.01886749267578C309.5839335123698,37.01886749267578,330.7987531026204,37.01886749267578,352.0135726928711,37.01886749267578C373.22839228312176,37.01886749267578,394.4432118733724,37.01886749267578,405.05062166849774,37.01886749267578L415.65803146362305,37.01886749267578" marker-end="url(#arrowhead4244)" style="fill:none;stroke-width:2px;stroke-dasharray:3;"></path>
+                    <defs>
+                        <marker id="arrowhead4244" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto">
+                            <path d="M 0 0 L 10 5 L 0 10 z" class="arrowheadPath" style="stroke-width: 1; stroke-dasharray: 1, 0;"></path>
+                        </marker>
+                    </defs>
+                </g>
+                <g class="edgePath LS-B LE-D" id="L-B-D" style="opacity: 1;">
+                    <path class="path" d="M537.0778388977051,37.01886749267578L553.2501055399576,37.01886749267578C569.4223721822103,37.01886749267578,601.7669054667155,37.01886749267578,634.1114387512207,37.01886749267578C666.455972035726,37.01886749267578,698.8005053202311,37.01886749267578,714.9727719624838,37.01886749267578L731.1450386047363,37.01886749267578" marker-end="url(#arrowhead4245)" style="fill:none"></path>
+                    <defs>
+                        <marker id="arrowhead4245" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="strokeWidth" markerWidth="8" markerHeight="6" orient="auto">
+                            <path d="M 0 0 L 0 0 L 0 0 z" style="fill: #333"></path>
+                        </marker>
+                    </defs>
+                </g>
+            </g>
+            <g class="edgeLabels">
+                <g class="edgeLabel" transform="translate(170.7411594390869,37.01886749267578)" style="opacity: 1;">
+                    <g transform="translate(-24.1043643951416,-9.509432792663574)" class="label">
+                        <rect rx="0" ry="0" width="48.2087287902832" height="19.01886558532715"></rect>
+                        <foreignObject width="48.2087287902832" height="19.01886749267578">
+                            <div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">
+                                <span id="L-L-U-A" class="edgeLabel L-LS-U' L-LE-A">cython</span>
+                            </div>
+                        </foreignObject>
+                    </g>
+                </g>
+                <g class="edgeLabel" transform="translate(352.0135726928711,37.01886749267578)" style="opacity: 1;">
+                    <g transform="translate(-38.64445877075195,-9.509432792663574)" class="label">
+                        <rect rx="0" ry="0" width="77.2889175415039" height="19.01886558532715"></rect>
+                        <foreignObject width="77.2889175415039" height="19.01886749267578">
+                            <div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">
+                                <span id="L-L-A-B" class="edgeLabel L-LS-A' L-LE-B">C compiler</span>
+                            </div>
+                        </foreignObject>
+                    </g>
+                </g>
+                <g class="edgeLabel" transform="translate(634.1114387512207,37.01886749267578)" style="opacity: 1;">
+                    <g transform="translate(-72.03359985351562,-9.509432792663574)" class="label">
+                        <rect rx="0" ry="0" width="144.06719970703125" height="19.01886558532715"></rect>
+                        <foreignObject width="144.0672149658203" height="19.01886749267578">
+                            <div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">
+                                <span id="L-L-B-D" class="edgeLabel L-LS-B' L-LE-D">ExtensionFileLoader</span>
+                            </div>
+                        </foreignObject>
+                    </g>
+                </g>
+            </g>
+            <g class="nodes">
+                <g class="node default" id="flowchart-U-5061" transform="translate(64.81839752197266,37.01886749267578)" style="opacity: 1;">
+                    <rect rx="0" ry="0" x="-56.818397521972656" y="-29.01886558532715" width="113.63679504394531" height="58.0377311706543" class="label-container"></rect>
+                    <g class="label" transform="translate(0,0)">
+                        <g transform="translate(-46.818397521972656,-19.01886558532715)">
+                            <foreignObject width="93.63679504394531" height="38.03773498535156">
+                                <div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Cython code <br/>
+ (Python like)</div>
+                            </foreignObject>
+                        </g>
+                    </g>
+                </g>
+                <g class="node default" id="flowchart-A-5062" transform="translate(254.10731887817383,37.01886749267578)" style="opacity: 1;">
+                    <rect rx="0" ry="0" x="-34.26179313659668" y="-19.509432792663574" width="68.52358627319336" height="39.01886558532715" class="label-container"></rect>
+                    <g class="label" transform="translate(0,0)">
+                        <g transform="translate(-24.26179313659668,-9.509432792663574)">
+                            <foreignObject width="48.52358627319336" height="19.01886749267578">
+                                <div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">C code</div>
+                            </foreignObject>
+                        </g>
+                    </g>
+                </g>
+                <g class="node default" id="flowchart-B-5064" transform="translate(476.36793518066406,37.01886749267578)" style="opacity: 1;">
+                    <rect rx="0" ry="0" x="-60.70990753173828" y="-29.01886558532715" width="121.41981506347656" height="58.0377311706543" class="label-container"></rect>
+                    <g class="label" transform="translate(0,0)">
+                        <g transform="translate(-50.70990753173828,-19.01886558532715)">
+                            <foreignObject width="101.41981506347656" height="38.03773498535156">
+                                <div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">Binary library <br/>
+(.so/.pyd)</div>
+                            </foreignObject>
+                        </g>
+                    </g>
+                </g>
+                <g class="node default" id="flowchart-D-5066" transform="translate(788.2558898925781,37.01886749267578)" style="opacity: 1;">
+                    <rect rx="29.01886558532715" ry="29.01886558532715" x="-57.110848903656006" y="-29.01886558532715" width="114.22169780731201" height="58.0377311706543" class="label-container"></rect>
+                    <g class="label" transform="translate(0,0)">
+                        <g transform="translate(-39.85613250732422,-19.01886558532715)">
+                            <foreignObject width="79.71226501464844" height="38.03773498535156">
+                                <div xmlns="http://www.w3.org/1999/xhtml" style="display: inline-block; white-space: nowrap;">CPython <br/>
+ interpreter</div>
+                            </foreignObject>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
