@@ -2111,10 +2111,49 @@ Type "help", "copyright", "credits" or "license" for more information.
 
         <section>
           <h2>Testing a library</h2>
+
+          <ol>
+            <li>
+              create virtual environment
+              <pre><code class="lang-bash" data-trim data-noescape>
+              virtualenv venv
+              </code></pre>
+            </li>
+            <li>
+              build (in a PEP-517/PEP-518 isolated environment) and install the package
+              <pre><code class="lang-bash" data-trim data-noescape>
+              pyproject-build --sdist .
+              pip install .\dist\pi_approx-1.0.0.tar.gz
+
+              # or the shorter form
+              # pip install .
+              </code></pre>
+            </li>
+            <li>
+              install test dependencies
+              <pre><code class="lang-bash" data-trim data-noescape>
+              venv\
+              </code></pre>
+            </li>
+            <li>run test</li>
+          </ol>
         </section>
 
         <section>
-          <h2>tox</h2>
+          <h2><a href="https://tox.readthedocs.io/en/latest/">tox</a></h2>
+          <pre><code class="lang-ini" data-trim data-noescape>
+            # tox.ini
+            [tox]
+            envlist =
+                py39
+            isolated_build = true
+
+            [testenv]
+            deps =
+                pytest>6
+            commands =
+                pytest tests
+          </code></pre>
         </section>
 
         <section>
