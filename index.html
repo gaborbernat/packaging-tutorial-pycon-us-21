@@ -70,7 +70,7 @@
             </ul>
             <div class="fragment">
               <img src="./img/silky_junior.png" class="r-stretch" />
-              <p style="font-size: 0.1em; margin: 0 0">Copyright of the above image owned by Bernat Gabor</p>
+              <p style="font-size: 0.5em">Photo by Bernat Gabor - All rights reserved</p>
             </div>
           </div>
         </section>
@@ -394,6 +394,11 @@
         </section>
 
         <section>
+          <h2>Back to packaging</h2>
+          <img class="r-stretch" src="./img/junior.jpg" />
+        </section>
+
+        <section>
           <h2>How to make it available on another machine?</h2>
           There are two ways to use the code:
           <div>
@@ -648,6 +653,11 @@
         </section>
 
         <section>
+          <h2>Use virtualenv when can, fallback to venv</h2>
+          <img class="r-stretch" src="./img/looking_silky_junior.jpg" />
+        </section>
+
+        <section>
           <h2>The library discovery system</h2>
           <ul>
             How does Python knows if a library is available (<a href="https://docs.python.org/3/reference/import.html"
@@ -658,7 +668,7 @@
               <pre><code class="lang-python" data-trim data-noescape>
                 $ virtualenv env
                 $ .\env\Scripts\python.exe
-                Python 3.9.4 (tags/v3.9.4:1f2e308, Apr  6 2021, 13:40:21) [MSC v.1928 64 bit (AMD64)] on win32
+                Python 3.9.5 (tags/v3.9.5:0a7dcbd, May  3 2021, 17:27:52) [MSC v.1928 64 bit (AMD64)] on win32
                 Type "help", "copyright", "credits" or "license" for more information.
                 >>> import setuptools
                 >>> setuptools
@@ -765,7 +775,7 @@
               <pre><code class="lang-python" data-trim data-noescape>
                 $ virtualenv env
                 $ .\env\Scripts\python.exe
-                Python 3.9.4 (tags/v3.9.4:1f2e308, Apr  6 2021, 13:40:21) [MSC v.1928 64 bit (AMD64)] on win32
+                Python 3.9.5 (tags/v3.9.5:0a7dcbd, May  3 2021, 17:27:52) [MSC v.1928 64 bit (AMD64)] on win32
                 Type "help", "copyright", "credits" or "license" for more information.
                 >>> import setuptools
                 >>> setuptools
@@ -1378,6 +1388,10 @@ Type "help", "copyright", "credits" or "license" for more information.
         </section>
 
         <section>
+          <img class="r-stretch" src="./img/junior_sleep.jpg" />
+        </section>
+
+        <section>
           <h2>What is an installed library made of?</h2>
           <ul>
             <li>
@@ -1623,6 +1637,11 @@ Type "help", "copyright", "credits" or "license" for more information.
         </section>
 
         <section>
+          <img class="r-stretch" src="./img/silky.jpg" />
+          <p style="font-size: 0.5em">Photo by Bernat Gabor - All rights reserved</p>
+        </section>
+
+        <section>
           <h2>Package types - (<span style="color: red">sdist</span>)</h2>
           <p>source distribution - resembles what we have on the developer machine</p>
           <ul>
@@ -1726,21 +1745,8 @@ Type "help", "copyright", "credits" or "license" for more information.
 
         <section>
           <h5>buckle up for a bit of history</h5>
-          <figure style="font-size: 12px">
-            <img style="max-height: 600px" src="img/photo-1541364983171-a8ba01e95cfc.jpeg" />
-            <figcaption>
-              Photo by
-              <a
-                href="https://unsplash.com/@charlesdeluvio?utm_source=ghost&amp;utm_medium=referral&amp;utm_campaign=api-credit"
-                >Charles 🇵🇭</a
-              >
-              /
-              <a href="https://unsplash.com/?utm_source=ghost&amp;utm_medium=referral&amp;utm_campaign=api-credit"
-                >Unsplash</a
-              >
-              - ehhh
-            </figcaption>
-          </figure>
+          <img class="r-stretch" src="./img/silky.jpg" />
+          <p style="font-size: 0.5em">Photo by Bernat Gabor - All rights reserved</p>
         </section>
 
         <section>
@@ -2110,6 +2116,11 @@ Type "help", "copyright", "credits" or "license" for more information.
         </section>
 
         <section>
+          <img class="r-stretch" src="./img/silky_junior_run.jpg" />
+          <p style="font-size: 0.5em">Photo by Bernat Gabor - All rights reserved</p>
+        </section>
+
+        <section>
           <h2>Testing a library</h2>
 
           <ol>
@@ -2199,6 +2210,11 @@ Type "help", "copyright", "credits" or "license" for more information.
         </section>
 
         <section>
+          <img class="r-stretch" src="./img/junior_tongue.jpg" />
+          <p style="font-size: 0.5em">Photo by Bernat Gabor - All rights reserved</p>
+        </section>
+
+        <section>
           <h2>Application vs library</h2>
           <ul>
             <li>
@@ -2245,11 +2261,14 @@ Type "help", "copyright", "credits" or "license" for more information.
           <h2><a href="https://docs.python.org/3/library/zipapp.html">zipapp</a></h2>
 
           <ul>
+            <li>
+              <a href="https://www.python.org/dev/peps/pep-0441/">PEP-441 - Improving Python ZIP Application Support</a>
+            </li>
             <li>Package python logic into a zip archive that can be executed by passing it to an interpreter</li>
             <li class="fragment">
               For example:
               <pre><code class="lang-ini" data-trim data-noescape>
-              wget https://bootstrap.pypa.io/virtualenv.pyz
+              curl https://bootstrap.pypa.io/virtualenv.pyz -o virtualenv.pyz
               python3.9 virtualenv.pyz --help
               </code></pre>
             </li>
@@ -2261,49 +2280,116 @@ Type "help", "copyright", "credits" or "license" for more information.
 
         <section>
           <h2>zipapp package pi approximator</h2>
+          <pre class="fragment"><code class="lang-bash" data-trim data-noescape>
+          py -m zipapp .\pi-approx-cy -m "pi_approx:run"
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-python" data-trim data-noescape>
+          def run() -> None:
+              parser = argparse.ArgumentParser(description="Calculate pi approximation.")
+              parser.add_argument("it", metavar="N", type=int, help="iteration count")
+              ns = parser.parse_args()
+              result = approximate_pi(ns.it)
+              print(f"result is {result}")
+          </code></pre>
         </section>
 
         <section>
-          <h2>zipapp content structure</h2>
-          <pre>
-                <code data-line-numbers="1-12" data-trim style="font-size: 0.8em; max-height: 800px;">
-                 .
-                ├──  __main__.py
-                ├──  virtualenv
-                │   └  ...
-                │──  virtualenv-20.0.25.dist-info
-                │  ├──  entry_points.txt
-                │  ├──  LICENSE
-                │  ├──  METADATA
-                │  ├──  RECORD
-                │  ├──  top_level.txt
-                │  ├──  WHEEL
-                │  └──  zip-safe
-                ├──  __virtualenv__
-                │  ├──  appdirs-1.4.4-py2.py3-none-any
-                │  ├──  configparser-4.0.2-py2.py3-none-any
-                │  ├──  contextlib2-0.6.0.post1-py2.py3-none-any
-                │  ├──  distlib-0.3.0-py3-none-any
-                │  ├──  filelock-3.0.12-py3-none-any
-                │  ├──  importlib_metadata-1.1.3-py2.py3-none-any
-                │  ├──  importlib_metadata-1.6.1-py2.py3-none-any
-                │  ├──  importlib_resources-1.0.2-py2.py3-none-any
-                │  ├──  importlib_resources-2.0.1-py2.py3-none-any
-                │  ├──  pathlib2-2.3.5-py2.py3-none-any
-                │  ├──  scandir-1.10.0-cp38-cp38-macosx_10_14_x86_64
-                │  ├──  six-1.15.0-py2.py3-none-any
-                │  ├──  typing-3.7.4.1-py2-none-any
-                │  ├──  typing-3.7.4.1-py3-none-any
-                │  ├──  zipp-1.2.0-py2.py3-none-any
-                │  └──  zipp-3.1.0-py3-none-any
-                ├──  distributions.json
-                └──  modules.json
-                </code>
-            </pre>
+          <h2><a href="https://pex.readthedocs.io/en/latest/">pex</a></h2>
+          <ul>
+            <li>
+              Create self-contained applications - UNIX only (no Windows support)
+              <pre><code class="lang-bash" data-noescape data-trim>
+                pex -c virtualenv -o virtualenv.pex virtualenv
+                python virtualenv.pex --help
+                </code></pre>
+            </li>
+            <li class="fragment">Python 2/3 support</li>
+            <li class="fragment">
+              Automatically discovers dependencies and packages
+              <pre><code class="lang-bash" data-noescape data-trim>
+            0      1980-01-01 00:00   .bootstrap/
+            0      1980-01-01 00:00   .bootstrap/pex/
+            401    1980-01-01 00:00   .bootstrap/pex/__init__.py
+            235    1980-01-01 00:00   .bootstrap/pex/__main__.py
+            483    1980-01-01 00:00   .bootstrap/pex/attrs.py
+            ...
+            0      1980-01-01 00:00   .deps/
+            0      1980-01-01 00:00   .deps/appdirs-1.4.4-py2.py3-none-any.whl/
+            24720  1980-01-01 00:00   .deps/appdirs-1.4.4-py2.py3-none-any.whl/appdirs.py
+          </code></pre>
+            </li>
+            <li class="fragment">
+              Marks created package executable
+              <pre><code class="lang-bash" data-noescape data-trim>
+                # uses #!/usr/bin/env python
+                virtualenv.pex --help
+              </code></pre>
+            </li>
+            <li class="fragment">As entry-point can select either main or console entry points</li>
+            <li class="fragment">
+              Note c-extension dependencies make the generated package not compatible with other platforms
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2><a href="https://github.com/linkedin/shiv">shiv</a></h2>
+          <ul>
+            <li>Python3.6+ support only but</li>
+            <li>
+              Create self-contained applications - UNIX only (no Windows support)
+              <pre><code class="lang-bash" data-noescape data-trim>
+                shiv -c virtualenv -o virtualenv.shiv virtualenv
+                python virtualenv.shiv --help
+                </code></pre>
+            </li>
+            <li class="fragment">
+              Automatically discovers dependencies and packages
+              <pre><code class="lang-bash" data-noescape data-trim>
+              Archive:  ./virtualenv.shiv
+              Length      Date    Time    Name
+              ---------  ---------- -----   ----
+                  24720  04/05/2021 22:37   site-packages/appdirs.py
+                  8      04/05/2021 22:37   site-packages/appdirs-1.4.4.dist-info/top_level.txt
+                  ...
+                  65     04/05/2021 22:37   site-packages/virtualenv/version.py
+                  2878   04/05/2021 22:37   _bootstrap/environment.py
+                  2063   04/05/2021 22:37   _bootstrap/filelock.py
+                  1762   04/05/2021 22:37   _bootstrap/interpreter.py
+                  8728   04/05/2021 22:37   _bootstrap/__init__.py
+                  377    04/05/2021 22:37   environment.json
+                  65     04/05/2021 22:37   __main__.py
+              </code></pre>
+            </li>
+            <li class="fragment">
+              Note c-extension dependencies make the generated package not compatible with other platforms
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2><a href="https://pyinstaller.readthedocs.io/en/stable/">pyinstaller</a></h2>
+          <ul>
+            <li>Packages not just the entry point, app and dependencies but also the interpreter</li>
+            <li>
+              generates a single binary executable
+              <pre><code class="lang-bash" data-noescape data-trim>
+                ❯ pyinstaller.exe -F .\pi_approx.py 
+                ❯ .\dist\pi_approx.exe 10000000
+                result is 3.1415925535897915
+              </code></pre>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>use pyinstaller to generate an executable for pi approximator</h2>
         </section>
 
         <section>
           <h2>zipapp with dynamic dependency</h2>
+          <h3>virtualenv - case study</h3>
           <ul>
             <li>some dependencies are OS specific</li>
             <li>some dependencies are Python version specific</li>
@@ -2416,6 +2502,45 @@ Type "help", "copyright", "credits" or "license" for more information.
         <section>
           <h2>zipapp content structure</h2>
           <pre>
+                <code data-line-numbers="1-12" data-trim style="font-size: 0.8em; max-height: 800px;">
+                 .
+                ├──  __main__.py
+                ├──  virtualenv
+                │   └  ...
+                │──  virtualenv-20.0.25.dist-info
+                │  ├──  entry_points.txt
+                │  ├──  LICENSE
+                │  ├──  METADATA
+                │  ├──  RECORD
+                │  ├──  top_level.txt
+                │  ├──  WHEEL
+                │  └──  zip-safe
+                ├──  __virtualenv__
+                │  ├──  appdirs-1.4.4-py2.py3-none-any
+                │  ├──  configparser-4.0.2-py2.py3-none-any
+                │  ├──  contextlib2-0.6.0.post1-py2.py3-none-any
+                │  ├──  distlib-0.3.0-py3-none-any
+                │  ├──  filelock-3.0.12-py3-none-any
+                │  ├──  importlib_metadata-1.1.3-py2.py3-none-any
+                │  ├──  importlib_metadata-1.6.1-py2.py3-none-any
+                │  ├──  importlib_resources-1.0.2-py2.py3-none-any
+                │  ├──  importlib_resources-2.0.1-py2.py3-none-any
+                │  ├──  pathlib2-2.3.5-py2.py3-none-any
+                │  ├──  scandir-1.10.0-cp38-cp38-macosx_10_14_x86_64
+                │  ├──  six-1.15.0-py2.py3-none-any
+                │  ├──  typing-3.7.4.1-py2-none-any
+                │  ├──  typing-3.7.4.1-py3-none-any
+                │  ├──  zipp-1.2.0-py2.py3-none-any
+                │  └──  zipp-3.1.0-py3-none-any
+                ├──  distributions.json
+                └──  modules.json
+                </code>
+            </pre>
+        </section>
+
+        <section>
+          <h2>zipapp content structure</h2>
+          <pre>
                 <code data-line-numbers="13-32" data-trim style="font-size: 0.8em; max-height: 800px;">
                  .
                 ├──  __main__.py
@@ -2469,115 +2594,8 @@ Type "help", "copyright", "credits" or "license" for more information.
           </ul>
         </section>
 
-        <section>
-          <h2>zipapp with dynamic dependencies</h2>
-          <table>
-            <thead>
-              <tr>
-                <th></th>
-                <th>3.9</th>
-                <th>3.8</th>
-                <th>3.7</th>
-                <th>3.6</th>
-                <th>3.5</th>
-                <th>3.4</th>
-                <th>2.7</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>appdirs</td>
-                <td>1.4.4</td>
-                <td>1.4.4</td>
-                <td>1.4.4</td>
-                <td>1.4.4</td>
-                <td>1.4.4</td>
-                <td>1.4.4</td>
-                <td>1.4.4</td>
-              </tr>
-              <tr>
-                <td>distlib</td>
-                <td>0.3.1</td>
-                <td>0.3.1</td>
-                <td>0.3.1</td>
-                <td>0.3.1</td>
-                <td>0.3.1</td>
-                <td>0.3.1</td>
-                <td>0.3.1</td>
-              </tr>
-              <tr>
-                <td>filelock</td>
-                <td>3.0.12</td>
-                <td>3.0.12</td>
-                <td>3.0.12</td>
-                <td>3.0.12</td>
-                <td>3.0.12</td>
-                <td>3.0.12</td>
-                <td>3.0.12</td>
-              </tr>
-              <tr>
-                <td>six</td>
-                <td>1.15.0</td>
-                <td>1.15.0</td>
-                <td>1.15.0</td>
-                <td>1.15.0</td>
-                <td>1.15.0</td>
-                <td>1.15.0</td>
-                <td>1.15.0</td>
-              </tr>
-              <tr>
-                <td>importlib-metadata</td>
-                <td></td>
-                <td></td>
-                <td>1.7.0</td>
-                <td>1.7.0</td>
-                <td>1.7.0</td>
-                <td>1.1.3</td>
-                <td>1.1.3</td>
-              </tr>
-              <tr>
-                <td>importlib-resources</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>2.0.1</td>
-                <td>2.0.1</td>
-                <td>1.0.2</td>
-                <td>1.0.2</td>
-              </tr>
-              <tr>
-                <td>pathlib2</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>2.3.5</td>
-                <td>2.3.5</td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
-
-        <section>
-          <h2><a href="https://pex.readthedocs.io/en/latest/">pex</a></h2>
-        </section>
-
-        <section>
-          <h2><a href="https://github.com/linkedin/shiv">shiv</a></h2>
-        </section>
-
-        <section>
-          <h2><a href="https://pyinstaller.readthedocs.io/en/stable/">pyinstaller</a></h2>
-        </section>
-
-        <section>
-          <h2>use pyinstaller to generate an executable for pi approximator</h2>
-        </section>
-
-        <section>
-          <h1>thank you</h1>
-          <img src="img/questions.jpeg" style="max-height: 1000px" />
+        <section data-background-video="img/end.mp4" data-background-video-loop data-background-video-muted>
+          <h1 style="color: black; position: fixed; right: 0; top: -700px">🙏 thank you 🙏</h1>
         </section>
       </div>
     </div>
