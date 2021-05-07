@@ -50,9 +50,7 @@
               <a href="https://github.com/bloomberg">Bloomberg</a>
             </small>
             <br />
-            <a href="https://gaborbernat.github.io/pycon-us-2021-tutorial/"
-              >https://gaborbernat.github.io/pycon-us-2021-tutorial</a
-            >
+            <a href="https://bit.ly/pkg-py-us-21">https://bit.ly/pkg-py-us-21</a>
           </p>
         </section>
 
@@ -656,6 +654,48 @@
         <section>
           <h2>Use virtualenv when can, fall back to venv</h2>
           <img class="r-stretch" src="./img/looking_silky_junior.jpg" />
+        </section>
+
+        <section>
+          <h2><a href="https://pypi.org/project/pyflow/">pyflow</a> - a fresh take on virtual environments</h2>
+
+          <pre><code class="lang-bash" data-trim data-noescape>
+          $ pyflow init
+          Please enter the Python version for this project: (eg: 3.8)
+          3.9
+          Created `pyproject.toml`
+          🐍 Setting up Python...
+          </code></pre>
+          <pre class="fragment"><code class="lang-bash" data-trim data-noescape>
+          $ pyflow install rich
+          Found lockfile
+          ⬇ Installing colorama 0.4.4 ...
+          ⬇ Installing rich 10.1.0 ...
+          ⬇ Installing pygments 2.9.0 ...
+          Added a console script: pygmentize
+          ⬇ Installing typing_extensions 3.10.0.0 ...
+          ⬇ Installing commonmark 0.9.1 ...
+          Added a console script: cmark
+          Installation complete
+          </code></pre>
+
+          <pre class="fragment"><code class="lang-bash" data-trim data-noescape>
+          $ pyflow init
+          ls .
+          __pypackages__  pyflow.lock  pyproject.toml
+          $ tree .
+          __pypackages__
+          └── 3.9
+            ├── bin
+            │  ├── cmark
+            │  └── pygmentize
+            └── lib
+                ├── colorama
+                │  ├── __init__.py
+                │  ├── ansi.py
+                │  ├── ansitowin32.py
+          ...
+          </code></pre>
         </section>
 
         <section>
@@ -1896,18 +1936,24 @@ Type "help", "copyright", "credits" or "license" for more information.
             <li>
               <b>build back-end</b> - performs the package generation in an isolated environment
               <ul>
-                <li>setuptools</li>
-                <li>flit</li>
-                <li>poetry</li>
+                <li class="fragment"><a href="https://setuptools.readthedocs.io/en/latest/">setuptools</a></li>
+                <li class="fragment"><a href="https://flit.readthedocs.io/en/latest/index.html">flit</a></li>
+                <li class="fragment"><a href="https://pypi.org/project/trampolim/">trampolim</a></li>
+                <li class="fragment"><a href="https://python-poetry.org">poetry</a></li>
+                <li class="fragment"><a href="https://pdm.fming.dev">pdm</a></li>
+                <li class="fragment">
+                  <a href="https://pypi.org/project/hatchling/">hatchling</a> -
+                  <a href="https://github.com/ofek/hatch">hatch</a>
+                </li>
               </ul>
             </li>
             <li class="fragment">
               <b>build front-end</b> - prepares the isolated environment, and invokes the back-end
               <ul>
                 <li><a href="https://pypa-build.readthedocs.io/en/latest/">build</a> - unified CLI for back-ends</li>
-                <li>poetry</li>
-                <li>pip - PEP-518 support with version 18.0</li>
-                <li>tox - PEP-518 support with version 3.3.0</li>
+                <li class="fragment">poetry, hatch, trampolim, pdm</li>
+                <li class="fragment">pip - PEP-518 support with version 18.0</li>
+                <li class="fragment">tox - PEP-518 support with version 3.3.0</li>
               </ul>
             </li>
           </ul>
@@ -1976,6 +2022,9 @@ Type "help", "copyright", "credits" or "license" for more information.
                 </li>
                 <li class="fragment">
                   flit - <span style="font-weight: bold; color: lightslategray">flit.buildapi</span>
+                </li>
+                <li class="fragment">
+                  trampolim - <span style="font-weight: bold; color: lightslategray">trampolim</span>
                 </li>
                 <li class="fragment">
                   poetry - <span style="font-weight: bold; color: lightslategray">poetry.masonry.api</span> - version
@@ -2339,7 +2388,7 @@ Type "help", "copyright", "credits" or "license" for more information.
           <ul>
             <li>Python 3.6+ support only but</li>
             <li>
-              Create self-contained applications - UNIX only (no Windows support)
+              Create self-contained applications - UNIX + Windows support
               <pre><code class="lang-bash" data-noescape data-trim>
                 shiv -c virtualenv -o virtualenv.shiv virtualenv
                 python virtualenv.shiv --help
