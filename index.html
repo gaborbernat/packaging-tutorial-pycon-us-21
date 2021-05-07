@@ -304,7 +304,7 @@
           <h2>Python code is easy to read (and write) 😁</h2>
           <h2 class="fragment">Shipping and running it to other machines is not 😭</h2>
           <div class="fragment">
-            <p>peoples face when they gaze into Python packaging first time</p>
+            <p>people's faces when they gaze into Python packaging the first time</p>
             <figure>
               <img alt="why" class="r-stretch" src="./img/why.jpeg" />
               <figcaption>
@@ -413,7 +413,7 @@
                         </code></pre>
           </div>
           <div class="fragment">
-            <p style="text-align: left">from the command line (as an executable - the end user way)</p>
+            <p style="text-align: left">from the command line (as an executable - the end-user way)</p>
             <pre><code class="lang-python" data-trim data-noescape>
                         $  python ./pi_approx.py
                         approx 300 3.1382593295155914 with diff -0.0033333240742017267
@@ -484,7 +484,7 @@
           <h2>Application mode</h2>
           <h4>Allow user to run the code - closed system</h4>
           <ul>
-            For example a Python GUI, CLI or web application; needs:
+            For example, a Python GUI, CLI or web application needs:
             <li class="fragment">A Python interpreter environment</li>
             <li class="fragment">Dependencies - exact version - may be obfuscated</li>
             <li class="fragment">The code - may be obfuscated</li>
@@ -509,7 +509,7 @@
         </section>
 
         <section>
-          <h3>What is a library</h3>
+          <h3>What is a library?</h3>
           <ul>
             code that can be
             <li><span style="color: red">imported</span> and executed</li>
@@ -521,14 +521,15 @@
           <h2>Python interpreter types</h2>
           <ul>
             <li>
-              global or system one (as installed by the operating system package manager)
+              global or system one (as installed by the operating system's package manager)
               <pre><code class="lang-python" data-trim data-noescape>
                 $ python3.9 -c 'import sys; print(sys.executable)'
                 C:\Users\gabor\AppData\Local\Programs\Python\Python39\python.exe
                 </code></pre>
             </li>
             <li class="fragment">
-              virtual environments - use system python executable and standard library, but isolate from other libraries
+              virtual environments - use system's Python executable and standard library, but isolate from other
+              libraries
               <ul>
                 <li class="fragment">
                   virtual environment - via <a href="https://docs.python.org/3/library/venv.html">venv</a>
@@ -616,7 +617,7 @@
               </tr>
               <tr>
                 <td>API</td>
-                <td>rich: e.g., lookup executable, site package dir</td>
+                <td>rich: e.g., lookup executable, site-package dir</td>
                 <td>
                   <a href="https://www.python.org/dev/peps/pep-0405/">limited as per PEP-405</a>
                 </td>
@@ -653,7 +654,7 @@
         </section>
 
         <section>
-          <h2>Use virtualenv when can, fallback to venv</h2>
+          <h2>Use virtualenv when can, fall back to venv</h2>
           <img class="r-stretch" src="./img/looking_silky_junior.jpg" />
         </section>
 
@@ -942,7 +943,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 <mark>>>> import pytoml
 >>> pytoml
 &lt;module 'pytoml' from '/opt/python3.9/lib/python3.9/site-packages/pytoml/__init__.py'&gt;</mark>
-<span style="color: black; background-color: cyan"><b>global site package module -> python -m pip install</b></span>
+<span style="color: black; background-color: cyan"><b>global site-package module -> python -m pip install</b></span>
 <div>>>> import pep517
 >>> pep517
   &lt;module 'pep517' from '/Users/bernat/.local/lib/python3.9/site-packages/pep517/__init__.py'&gt;</div><br></code>
@@ -972,7 +973,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 <mark>>>> import pep517
 >>> pep517
   &lt;module 'pep517' from '/Users/bernat/.local/lib/python3.9/site-packages/pep517/__init__.py'&gt;</mark>
-<span style="color: black; background-color: cyan"><b>user site package module -> python -m pip install --user</b></span></code>
+<span style="color: black; background-color: cyan"><b>user site-package module -> python -m pip install --user</b></span></code>
                   </pre>
         </section>
 
@@ -1052,7 +1053,7 @@ Type "help", "copyright", "credits" or "license" for more information.
         </section>
 
         <section>
-          <h2>the import system - path finder</h2>
+          <h2>the import system - pathfinder</h2>
 
           <pre style="font-size: 0.55em; width: 60em">
                   <code style="max-height: 30em" class="lang-python" data-noescape data-trim>
@@ -1077,7 +1078,7 @@ Type "help", "copyright", "credits" or "license" for more information.
         </section>
 
         <section>
-          <h2>the import system - path finder</h2>
+          <h2>the import system - pathfinder</h2>
 
           <pre style="font-size: 0.55em; width: 60em">
                   <code style="max-height: 30em" class="lang-python" data-noescape data-trim>
@@ -1106,7 +1107,7 @@ Type "help", "copyright", "credits" or "license" for more information.
         </section>
 
         <section>
-          <h2>the import system - path finder</h2>
+          <h2>the import system - pathfinder</h2>
 
           <pre style="font-size: 0.55em; width: 60em">
                   <code style="max-height: 30em" class="lang-python" data-noescape data-trim>
@@ -1135,7 +1136,7 @@ Type "help", "copyright", "credits" or "license" for more information.
         </section>
 
         <section>
-          <h2>the import system - path finder</h2>
+          <h2>the import system - pathfinder</h2>
 
           <pre style="font-size: 0.55em; width: 60em">
                   <code style="max-height: 30em" class="lang-python" data-noescape data-trim>
@@ -1164,7 +1165,7 @@ Type "help", "copyright", "credits" or "license" for more information.
         </section>
 
         <section>
-          <h2>the import system - path finder</h2>
+          <h2>the import system - pathfinder</h2>
 
           <pre style="font-size: 0.55em; width: 60em">
                   <code style="max-height: 30em" class="lang-python" data-noescape data-trim>
@@ -1193,7 +1194,7 @@ Type "help", "copyright", "credits" or "license" for more information.
         </section>
 
         <section>
-          <h2>the import system - path finder</h2>
+          <h2>the import system - pathfinder</h2>
 
           <pre style="font-size: 0.55em; width: 60em">
                   <code style="max-height: 30em" class="lang-python" data-noescape data-trim>
@@ -1217,13 +1218,13 @@ Type "help", "copyright", "credits" or "license" for more information.
 /opt/python3.9/lib/python3.9
 /opt/python3.9/lib/python3.9/lib-dynload
 <mark>/Users/bernat/.local/lib/python3.9/site-packages</mark> <span
-                          style="color: black; background-color: cyan">user site package</span>
+                          style="color: black; background-color: cyan">user site-package</span>
 /opt/python3.9/lib/python3.9/site-packages
 </code> </pre>
         </section>
 
         <section>
-          <h2>the import system - path finder</h2>
+          <h2>the import system - pathfinder</h2>
 
           <pre style="font-size: 0.55em; width: 60em">
                   <code style="max-height: 30em" class="lang-python" data-noescape data-trim>
@@ -1246,7 +1247,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 /opt/python3.9/lib/python3.9
 /opt/python3.9/lib/python3.9/lib-dynload
 /Users/bernat/.local/lib/python3.9/site-packages
-<mark>/opt/python3.9/lib/python3.9/site-packages</mark> <span style="color: black; background-color: cyan">global site package</span>
+<mark>/opt/python3.9/lib/python3.9/site-packages</mark> <span style="color: black; background-color: cyan">global site-package</span>
 </code></pre>
         </section>
 
@@ -1263,7 +1264,7 @@ Type "help", "copyright", "credits" or "license" for more information.
                   <li>standard library</li>
                 </ul>
               </li>
-              <li>optionally isolated from the system site package</li>
+              <li>optionally isolated from the system site-package</li>
             </div>
           </ul>
         </section>
@@ -1294,8 +1295,8 @@ Type "help", "copyright", "credits" or "license" for more information.
 <mark>/opt/python3.9/lib/python3.9/lib-dynload</mark> <span style="color: black; background-color: cyan">standard library c-extension</span>
 
 <mark>/Users/bernat/.local/lib/python3.9/site-packages</mark> <span
-                          style="color: black; background-color: cyan">user site package</span>
-<mark>/opt/python3.9/lib/python3.9/site-packages</mark> <span style="color: black; background-color: cyan">global site package</span>
+                          style="color: black; background-color: cyan">user site-package</span>
+<mark>/opt/python3.9/lib/python3.9/site-packages</mark> <span style="color: black; background-color: cyan">global site-package</span>
 </code> </pre>
         </section>
 
@@ -1323,7 +1324,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 <mark>/opt/python3.9/lib/python3.9</mark> <span
                           style="color: black; background-color: cyan">standard library</span>
 <mark>/opt/python3.9/lib/python3.9/lib-dynload</mark> <span style="color: black; background-color: cyan">standard library c-extension</span>
-<mark>/Users/bernat/env/lib/python3.9/site-package</mark> <span style="color: black; background-color: cyan">OWN site package</span>
+<mark>/Users/bernat/env/lib/python3.9/site-package</mark> <span style="color: black; background-color: cyan">OWN site-package</span>
 
 
 </code> </pre>
@@ -1354,10 +1355,10 @@ Type "help", "copyright", "credits" or "license" for more information.
 <mark>/opt/python3.9/lib/python3.9</mark> <span
                           style="color: black; background-color: cyan">standard library</span>
 <mark>/opt/python3.9/lib/python3.9/lib-dynload</mark> <span style="color: black; background-color: cyan">standard library c-extension</span>
-<mark>/Users/bernat/env/lib/python3.9/site-package</mark> <span style="color: black; background-color: cyan">OWN site package</span>
+<mark>/Users/bernat/env/lib/python3.9/site-package</mark> <span style="color: black; background-color: cyan">OWN site-package</span>
 <mark>/Users/bernat/.local/lib/python3.9/site-packages</mark> <span
-                          style="color: black; background-color: cyan">user site package</span>
-<mark>/opt/python3.9/lib/python3.9/site-packages</mark> <span style="color: black; background-color: cyan">global site package</span>
+                          style="color: black; background-color: cyan">user site-package</span>
+<mark>/opt/python3.9/lib/python3.9/site-packages</mark> <span style="color: black; background-color: cyan">global site-package</span>
 </code> </pre>
         </section>
 
@@ -1408,7 +1409,7 @@ Type "help", "copyright", "credits" or "license" for more information.
               </code></pre>
             </li>
             <li class="fragment">
-              entry points - console/GUI generated alongside the python executable
+              entry points - console/GUI generated alongside the Python executable
               <pre>
               <code class="lang-python" data-trim data-noescape>
                 ❯ lsd --tree .\env\Scripts
@@ -1674,7 +1675,7 @@ Type "help", "copyright", "credits" or "license" for more information.
           <p>resembles what we want on the target machine</p>
           <ul>
             <li>
-              <span style="color: red">the installed binary files with some meta data</span>
+              <span style="color: red">the installed binary files with some metadata</span>
             </li>
             <li class="fragment">
               source tree minus
@@ -1706,7 +1707,7 @@ Type "help", "copyright", "credits" or "license" for more information.
         <section>
           <h2>sdist or wheel</h2>
           <ul>
-            <li>We always install wheel - if we have a sdist we first build a wheel from it</li>
+            <li>We always install wheel - if we have a sdist, we first build a wheel from it</li>
           </ul>
         </section>
 
@@ -1792,7 +1793,7 @@ Type "help", "copyright", "credits" or "license" for more information.
           <h5>Problem 1 - build dependencies</h5>
           <ul>
             <li>
-              setuptools pulled in from the builder python
+              setuptools pulled in from the builder Python
               <pre><code class="lang-bash" data-trim data-noescape>
                     <mark>python</mark> setup.py sdist
                     <mark>python</mark> setup.py install
@@ -1809,7 +1810,7 @@ Type "help", "copyright", "credits" or "license" for more information.
                         </code>
                     </pre>
             </li>
-            <li class="fragment">or even worse no error - incorrect version</li>
+            <li class="fragment">or even worse, no error - incorrect version</li>
             <li class="fragment">or even worse - user can hijack setuptools and try to inject their own code</li>
           </ul>
         </section>
@@ -1830,7 +1831,7 @@ Type "help", "copyright", "credits" or "license" for more information.
               create temporary folder
               <ul>
                 <li>
-                  create an isolated python environment
+                  create an isolated Python environment
                   <pre>
                     <code class="lang-bash" data-trim data-noescape>
                         python -m venv our_build_env
@@ -1849,7 +1850,7 @@ Type "help", "copyright", "credits" or "license" for more information.
             </li>
 
             <li class="fragment">
-              generate a wheel, that we can simply install afterwards
+              generate a wheel that we can simply install afterwards
               <pre>
                 <code class="lang-bash" data-trim data-noescape>
                     our_build_env/bin/python setup.py bdist_wheel
@@ -1893,7 +1894,7 @@ Type "help", "copyright", "credits" or "license" for more information.
           <ul>
             <li><a href="https://www.python.org/dev/peps/pep-0518/">PEP-518</a></li>
             <li>
-              <b>build backend</b> - performs the package generation in an isolated environment
+              <b>build back-end</b> - performs the package generation in an isolated environment
               <ul>
                 <li>setuptools</li>
                 <li>flit</li>
@@ -1901,9 +1902,9 @@ Type "help", "copyright", "credits" or "license" for more information.
               </ul>
             </li>
             <li class="fragment">
-              <b>build frontend</b> - prepares the isolated environment, and invokes the backend
+              <b>build front-end</b> - prepares the isolated environment, and invokes the back-end
               <ul>
-                <li><a href="https://pypa-build.readthedocs.io/en/latest/">build</a> - unified CLI for backends</li>
+                <li><a href="https://pypa-build.readthedocs.io/en/latest/">build</a> - unified CLI for back-ends</li>
                 <li>poetry</li>
                 <li>pip - PEP-518 support with version 18.0</li>
                 <li>tox - PEP-518 support with version 3.3.0</li>
@@ -1941,7 +1942,7 @@ Type "help", "copyright", "credits" or "license" for more information.
                     </pre>
             </li>
             <li>
-              Allow build backends to expose invocation end-points:
+              Allow build back-ends to expose invocation end-points:
               <pre><code class="lang-toml" data-trim data-noescape>
               [build-system]
               requires = ["flit"]
@@ -1949,7 +1950,7 @@ Type "help", "copyright", "credits" or "license" for more information.
               </code></pre>
             </li>
             <li>
-              And the build frontend will now do:
+              And the build front-end will now do:
               <pre>
                         <code class="lang-python" data-trim data-noescape>
                             import flit.api
@@ -1967,7 +1968,7 @@ Type "help", "copyright", "credits" or "license" for more information.
           <h5>Problem 2 - diversity - better user interface</h5>
           <ul>
             <li>
-              <a href="https://www.python.org/dev/peps/pep-0517/">PEP-517</a> backend support
+              <a href="https://www.python.org/dev/peps/pep-0517/">PEP-517</a> back-end support
               <ul>
                 <li>
                   setuptools - <span style="font-weight: bold; color: lightslategray">setuptools.build_meta</span> -
@@ -1983,7 +1984,7 @@ Type "help", "copyright", "credits" or "license" for more information.
               </ul>
             </li>
             <li class="fragment">
-              <a href="https://www.python.org/dev/peps/pep-0517/">PEP-517</a> frontend support
+              <a href="https://www.python.org/dev/peps/pep-0517/">PEP-517</a> front-end support
               <ul>
                 <li>build</li>
                 <li>pip 19.0</li>
@@ -1996,15 +1997,15 @@ Type "help", "copyright", "credits" or "license" for more information.
         <section>
           <h2>How to build a package?</h2>
           <ul>
-            <li>Pick your build backend</li>
+            <li>Pick your build back-end</li>
             <li>
               Use <span style="font-weight: bold; color: lightslategray">pyproject.toml </span> to specify your
               <ul>
                 <li>build dependencies</li>
-                <li>build backend interface</li>
+                <li>build back-end interface</li>
               </ul>
             </li>
-            <li>Follow the docs of your backend on how to configure it</li>
+            <li>Follow the docs of your back-end on how to configure it</li>
           </ul>
         </section>
 
@@ -2078,7 +2079,7 @@ Type "help", "copyright", "credits" or "license" for more information.
               </code></pre>
             </li>
             <li class="fragment">
-              today we use <a href="https://twine.readthedocs.io/en/latest/">twine</a>
+              Today we use <a href="https://twine.readthedocs.io/en/latest/">twine</a>
               <pre><code class="lang-bash" data-trim data-noescape>
               twine upload dist/*
               </code></pre>
@@ -2096,10 +2097,10 @@ Type "help", "copyright", "credits" or "license" for more information.
         <section>
           <h2>Discover and download a package</h2>
           <ul>
-            <li>For human discovery visit <a href="https://pypi.org">PyPI</a></li>
+            <li>For human discovery, visit <a href="https://pypi.org">PyPI</a></li>
             <li class="fragment">
               Machines use the <a href="https://www.python.org/dev/peps/pep-0503/">Simple Repository API ~ PEP-503</a>,
-              e.g. <a href="https://pypi.org/simple/build/">build</a>
+              e.g., <a href="https://pypi.org/simple/build/">build</a>
               <pre><code class="lang-bash" data-trim data-noescape>
                 pip download 'build&lt;0.3' --no-deps -d wheels
               </code></pre>
@@ -2215,7 +2216,7 @@ Type "help", "copyright", "credits" or "license" for more information.
         </section>
 
         <section>
-          <h2>Application vs library</h2>
+          <h2>Application vs. library</h2>
           <ul>
             <li>
               Library
@@ -2241,7 +2242,7 @@ Type "help", "copyright", "credits" or "license" for more information.
         <section>
           <h2>Application as a library</h2>
           <ul>
-            <li>Do the same we learned in previous chapter</li>
+            <li>Do the same as we learned in previous chapter</li>
             <li>
               Downsides
               <ul>
@@ -2252,7 +2253,7 @@ Type "help", "copyright", "credits" or "license" for more information.
               </ul>
             </li>
             <li class="fragment">
-              Is still usable though if you can solve these in otherways - e.g. build docker images
+              Is still usable though if you can solve these in otherways - e.g., build docker images
             </li>
           </ul>
         </section>
@@ -2264,7 +2265,7 @@ Type "help", "copyright", "credits" or "license" for more information.
             <li>
               <a href="https://www.python.org/dev/peps/pep-0441/">PEP-441 - Improving Python ZIP Application Support</a>
             </li>
-            <li>Package python logic into a zip archive that can be executed by passing it to an interpreter</li>
+            <li>Package python logic into a ZIP archive that can be executed by passing it to an interpreter</li>
             <li class="fragment">
               For example:
               <pre><code class="lang-ini" data-trim data-noescape>
@@ -2273,7 +2274,7 @@ Type "help", "copyright", "credits" or "license" for more information.
               </code></pre>
             </li>
             <li class="fragment">
-              provides a way to organize python files into a zip file and define a unified entry point for the zip file
+              provides a way to organize python files into a ZIP file and define a unified entry point for the ZIP file
             </li>
           </ul>
         </section>
@@ -2326,9 +2327,9 @@ Type "help", "copyright", "credits" or "license" for more information.
                 virtualenv.pex --help
               </code></pre>
             </li>
-            <li class="fragment">As entry-point can select either main or console entry points</li>
+            <li class="fragment">As entry-point, can select either main or console entry points</li>
             <li class="fragment">
-              Note c-extension dependencies make the generated package not compatible with other platforms
+              Note C-extension dependencies make the generated package not compatible with other platforms
             </li>
           </ul>
         </section>
@@ -2336,7 +2337,7 @@ Type "help", "copyright", "credits" or "license" for more information.
         <section>
           <h2><a href="https://github.com/linkedin/shiv">shiv</a></h2>
           <ul>
-            <li>Python3.6+ support only but</li>
+            <li>Python 3.6+ support only but</li>
             <li>
               Create self-contained applications - UNIX only (no Windows support)
               <pre><code class="lang-bash" data-noescape data-trim>
@@ -2363,7 +2364,7 @@ Type "help", "copyright", "credits" or "license" for more information.
               </code></pre>
             </li>
             <li class="fragment">
-              Note c-extension dependencies make the generated package not compatible with other platforms
+              Note C-extension dependencies make the generated package not compatible with other platforms
             </li>
           </ul>
         </section>
@@ -2371,7 +2372,7 @@ Type "help", "copyright", "credits" or "license" for more information.
         <section>
           <h2><a href="https://pyinstaller.readthedocs.io/en/stable/">pyinstaller</a></h2>
           <ul>
-            <li>Packages not just the entry point, app and dependencies but also the interpreter</li>
+            <li>Packages not just the entry point, app and dependencies, but also the interpreter</li>
             <li>
               generates a single binary executable
               <pre><code class="lang-bash" data-noescape data-trim>
